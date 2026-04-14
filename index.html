@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water District System | Home</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">WaterDistrict</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="pages/about.html">About</a></li>
+          <li><a href="pages/services.html">Services</a></li>
+          <li><a href="pages/updates.html">Updates</a></li>
+          <li><a href="pages/contact.html">Contact Us</a></li>
+          <li><a href="login.html" class="btn btn-accent">Login</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="text-center">
+          <h1>Pure Water, Reliable Service</h1>
+          <p>Managing your water usage and bills has never been easier.</p>
+          <a href="login.html" class="btn btn-primary">Get Started</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Hamburger menu logic
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+      const navbar = document.getElementById("navbar");
+
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>
