@@ -359,7 +359,7 @@ function renderGoals(user) {
     if (checklistContainer) {
       let html = '';
       const startIndex = (week - 1) * 7;
-      const dayNames = ["MONDAY", "DAY-2", "WEDNESDAY", "DAY-4", "DAY-5", "DAY-6", "DAY-7"];
+      const dayNames = ["DAY-1", "DAY-2", "DAY-3", "DAY-4", "DAY-5", "DAY-6", "DAY-7"];
 
       for (let i = 0; i < 7; i++) {
         const itemIndex = startIndex + i;
