@@ -269,31 +269,153 @@ function renderAnnouncements(user) {
 }
 
 function renderGoals(user) {
-  const checklistItems = document.querySelectorAll('.goal-checkbox');
+  const WATER_CHALLENGE_TASKS = [
+    // Week 1
+    { text: "Shorten your daily shower to 5 minutes or less to save gallons of water.", icon: "fa-stopwatch", save: 10 },
+    { text: "Turn off the faucet while brushing your teeth or shaving.", icon: "fa-tooth", save: 10 },
+    { text: "Only run the washing machine when you have a full load of clothes.", icon: "fa-tshirt", save: 10 },
+    { text: "Use a bowl of water to wash fruits and vegetables instead of a running tap.", icon: "fa-apple-alt", save: 10 },
+    { text: "Fix any leaking faucets or dripping showerheads immediately.", icon: "fa-wrench", save: 10 },
+    { text: "Use a broom to clean your porch or driveway instead of a hose.", icon: "fa-broom", save: 10 },
+    { text: "Thaw frozen foods in the refrigerator overnight instead of using running water.", icon: "fa-icicles", save: 10 },
+    // Week 2
+    { text: "Scrape leftover food into the bin instead of rinsing it off under the tap.", icon: "fa-trash", save: 10 },
+    { text: "Water your garden only in the early morning or late evening.", icon: "fa-leaf", save: 10 },
+    { text: "Put a bottle of water in the fridge so you don't have to run the tap for a cold drink.", icon: "fa-snowflake", save: 10 },
+    { text: "Reuse leftover pasta water to water your plants once it has cooled down.", icon: "fa-seedling", save: 10 },
+    { text: "Turn off the shower water while you are lathering your hair with shampoo.", icon: "fa-pump-soap", save: 10 },
+    { text: "Collect the water used while waiting for the shower to get hot.", icon: "fa-bucket", save: 10 },
+    { text: "Check your toilet for leaks by putting a few drops of food coloring in the tank.", icon: "fa-tint", save: 10 },
+    // Week 3
+    { text: "Use a bucket and sponge to wash your car instead of a running hose.", icon: "fa-car", save: 10 },
+    { text: "Install a low-flow showerhead to reduce water usage automatically.", icon: "fa-shower", save: 10 },
+    { text: "Do not use the toilet as a trash can for tissues or wipes.", icon: "fa-ban", save: 10 },
+    { text: "Soak dirty pots and pans in the sink instead of scrubbing them under running water.", icon: "fa-sink", save: 10 },
+    { text: "Cover your pool when not in use to stop water from evaporating.", icon: "fa-swimming-pool", save: 10 },
+    { text: "Choose a quick shower over a full bathtub to save dozens of gallons.", icon: "fa-bath", save: 10 },
+    { text: "Point your sprinklers toward the grass and away from the sidewalk.", icon: "fa-water", save: 10 },
+    // Week 4
+    { text: "Use mulch in your garden to keep the soil moist for longer.", icon: "fa-tree", save: 10 },
+    { text: "Turn off the water while you are scrubbing your hands with soap.", icon: "fa-hands-wash", save: 10 },
+    { text: "Wash your pets on the grass so you water the lawn at the same time.", icon: "fa-dog", save: 10 },
+    { text: "Read your water meter weekly to track your progress and find hidden leaks.", icon: "fa-tachometer-alt", save: 10 },
+    { text: "Set a timer on your phone to keep your showers on track.", icon: "fa-mobile-alt", save: 10 },
+    { text: "Use a reusable water bottle to reduce the number of glasses you need to wash.", icon: "fa-glass-water", save: 10 },
+    { text: "Check outdoor hoses and connections for any cracks or leaks.", icon: "fa-wrench", save: 10 },
+    // Week 5
+    { text: "Use the smallest amount of water possible when boiling food.", icon: "fa-fire-burner", save: 10 },
+    { text: "Upgrade to a water-efficient toilet if your current one is very old.", icon: "fa-toilet", save: 10 },
+    { text: "Wash dark clothes in cold water to save energy and water.", icon: "fa-tshirt", save: 10 },
+    { text: "Keep a bucket in the shower to catch excess water for flushing the toilet.", icon: "fa-bucket", save: 10 },
+    { text: "Use a lid on pots when boiling water to prevent loss through steam.", icon: "fa-temperature-high", save: 10 },
+    { text: "Only water your lawn when the grass doesn't spring back after you step on it.", icon: "fa-shoe-prints", save: 10 },
+    { text: "Tell a family member or roommate about your water-saving goal for the week.", icon: "fa-users", save: 10 }
+  ];
 
-  // Restore state from local storage if exists
-  const savedState = JSON.parse(localStorage.getItem("goalChecklist_" + user.username)) || {};
+  let currentWeek = 1;
+  const stateKey = "waterChallenge_" + user.username;
+  let challengeState = JSON.parse(localStorage.getItem(stateKey)) || Array(35).fill(false);
 
-  checklistItems.forEach((item, index) => {
-    if (savedState[index]) {
-      item.checked = true;
-      item.parentElement.style.textDecoration = 'line-through';
-      item.parentElement.style.color = '#888';
+  const tabs = document.querySelectorAll('.challenge-tab');
+  const checklistContainer = document.getElementById('challenge-checklist');
+  const weekTitle = document.getElementById('challenge-week-title');
+  const progressFill = document.getElementById('challenge-progress-fill');
+  const progressText = document.getElementById('challenge-progress-text');
+  const impactLabel = document.getElementById('impact-week-label');
+  const impactGallons = document.getElementById('impact-gallons');
+
+  const updateProgress = () => {
+    const completedCount = challengeState.filter(Boolean).length;
+    const totalCount = WATER_CHALLENGE_TASKS.length;
+    const percentage = Math.round((completedCount / totalCount) * 100);
+
+    if (progressFill) progressFill.style.width = percentage + "%";
+    if (progressText) progressText.textContent = percentage + "% COMPLETE";
+
+    // Update local storage
+    localStorage.setItem(stateKey, JSON.stringify(challengeState));
+
+    // Update impact for current week
+    const weekStart = (currentWeek - 1) * 7;
+    let weekSaved = 0;
+    for (let i = weekStart; i < weekStart + 7; i++) {
+      if (challengeState[i]) weekSaved += WATER_CHALLENGE_TASKS[i].save;
+    }
+    if (impactGallons) impactGallons.textContent = weekSaved + " GALLONS SAVED!";
+  };
+
+  const renderWeek = (week) => {
+    currentWeek = week;
+
+    // Update tabs
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector(`.challenge-tab[data-week="${week}"]`)?.classList.add('active');
+
+    // Update labels
+    if (weekTitle) weekTitle.textContent = `WEEK ${week}: 7 STEPS TO SAVINGS`;
+    if (impactLabel) impactLabel.textContent = `WEEK ${week} IMPACT:`;
+
+    // Render list
+    if (checklistContainer) {
+      let html = '';
+      const startIndex = (week - 1) * 7;
+      const dayNames = ["MONDAY", "DAY-2", "WEDNESDAY", "DAY-4", "DAY-5", "DAY-6", "DAY-7"];
+
+      for (let i = 0; i < 7; i++) {
+        const itemIndex = startIndex + i;
+        if (itemIndex >= WATER_CHALLENGE_TASKS.length) break;
+
+        const task = WATER_CHALLENGE_TASKS[itemIndex];
+        const isChecked = challengeState[itemIndex];
+        const dayLabel = dayNames[i];
+
+        html += `
+          <div class="challenge-item ${isChecked ? 'completed' : ''}" data-index="${itemIndex}">
+            <div class="challenge-day">${dayLabel}</div>
+            <input type="checkbox" class="challenge-checkbox" ${isChecked ? 'checked' : ''}>
+            <div class="challenge-desc">${task.text}</div>
+            <div class="challenge-icon"><i class="fas ${task.icon}"></i></div>
+            <div class="challenge-badge">
+              <span>SAVE</span>
+              <span>${task.save}</span>
+              <span>GALS</span>
+            </div>
+          </div>
+        `;
+      }
+      checklistContainer.innerHTML = html;
+
+      // Add event listeners to new checkboxes
+      const items = checklistContainer.querySelectorAll('.challenge-item');
+      items.forEach(item => {
+        const checkbox = item.querySelector('.challenge-checkbox');
+        const index = parseInt(item.getAttribute('data-index'));
+
+        checkbox.addEventListener('change', (e) => {
+          challengeState[index] = e.target.checked;
+          if (e.target.checked) {
+            item.classList.add('completed');
+          } else {
+            item.classList.remove('completed');
+          }
+          updateProgress();
+        });
+      });
     }
 
-    item.addEventListener('change', (e) => {
-      const isChecked = e.target.checked;
-      if (isChecked) {
-        e.target.parentElement.style.textDecoration = 'line-through';
-        e.target.parentElement.style.color = '#888';
-      } else {
-        e.target.parentElement.style.textDecoration = 'none';
-        e.target.parentElement.style.color = 'inherit';
-      }
+    updateProgress();
+  };
 
-      // Save state
-      savedState[index] = isChecked;
-      localStorage.setItem("goalChecklist_" + user.username, JSON.stringify(savedState));
+  // Add click events to tabs
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      const week = parseInt(e.target.getAttribute('data-week'));
+      renderWeek(week);
     });
   });
+
+  // Initial render
+  if (tabs.length > 0) {
+    renderWeek(1);
+  }
 }

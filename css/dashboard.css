@@ -368,3 +368,207 @@ td {
   border-radius: 30px;
   font-size: 0.95rem;
 }
+/* Weekly Water Challenge Styles */
+.water-challenge-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.challenge-header {
+  background-color: #46B6D6;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.challenge-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.challenge-progress-section {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #F0F9FF;
+  border-bottom: 2px solid #46B6D6;
+  gap: 1rem;
+  font-weight: 600;
+  color: #1E3A8A;
+}
+
+.progress-bar-container {
+  flex-grow: 1;
+  background-color: white;
+  border: 1px solid #46B6D6;
+  border-radius: 20px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  background-color: #46B6D6;
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.challenge-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 4px solid #1E82A4;
+}
+
+.challenge-tab {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #46B6D6;
+  border-bottom: none;
+  background-color: white;
+  color: #1E3A8A;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.challenge-tab.active {
+  background-color: #1E82A4;
+  color: white;
+}
+
+.challenge-body {
+  border: 2px solid #1E82A4;
+  border-top: none;
+}
+
+.challenge-week-title {
+  background-color: #1E82A4;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.challenge-checklist {
+  display: flex;
+  flex-direction: column;
+}
+
+.challenge-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #BAE6FD;
+  background-color: #E0F2FE;
+  gap: 1rem;
+}
+
+.challenge-item:nth-child(even) {
+  background-color: #F0F9FF;
+}
+
+.challenge-item.completed {
+  color: #94A3B8;
+  background-color: #E2E8F0;
+}
+
+.challenge-item.completed .challenge-desc {
+  text-decoration: line-through;
+}
+
+.challenge-day {
+  font-weight: bold;
+  min-width: 100px;
+  color: #1E3A8A;
+  text-transform: uppercase;
+}
+
+.challenge-checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.challenge-desc {
+  flex-grow: 1;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s;
+}
+
+.challenge-item.completed .challenge-desc,
+.challenge-item.completed .challenge-day {
+  color: #94A3B8;
+}
+
+.challenge-icon {
+  font-size: 1.5rem;
+  color: #46B6D6;
+  width: 40px;
+  text-align: center;
+}
+
+.challenge-badge {
+  background-color: #46B6D6;
+  color: white;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+}
+
+.challenge-item.completed .challenge-icon,
+.challenge-item.completed .challenge-badge {
+  opacity: 0.6;
+}
+
+.challenge-footer {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: #F8FAFC;
+}
+
+.impact-badge {
+  display: flex;
+  align-items: center;
+  background-color: #E0F2FE;
+  border: 2px solid #46B6D6;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  gap: 1.5rem;
+}
+
+.impact-drops {
+  color: #46B6D6;
+  font-size: 1.5rem;
+}
+
+.impact-text {
+  text-align: center;
+  color: #0F172A;
+  display: flex;
+  flex-direction: column;
+}
+
+.impact-text strong {
+  font-size: 1.25rem;
+}
+
+.impact-icon {
+  color: #46B6D6;
+  font-size: 2rem;
+}
