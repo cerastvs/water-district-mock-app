@@ -34,7 +34,94 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '../login.html';
         });
     }
+
+    // New Portal Interactions (Search, Reset)
+    initPortalInteractions();
 });
+
+function initPortalInteractions() {
+    const searchBtn = document.querySelector('.btn-search');
+    const searchInput = document.getElementById('consumer-meter-input');
+    const nameVal = document.getElementById('consumer-name');
+    const addressVal = document.getElementById('consumer-address');
+    const statusVal = document.getElementById('consumer-status');
+
+    if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', () => {
+            const meterNo = searchInput.value.trim();
+            if (!meterNo) {
+                alert("Please enter a meter number.");
+                return;
+            }
+
+            const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+            const userFound = accounts.find(acc => acc.meterNumber === meterNo);
+
+            if (userFound) {
+                nameVal.textContent = userFound.name || userFound.username;
+                addressVal.textContent = userFound.address || "N/A";
+                statusVal.textContent = "Active";
+                statusVal.className = "value status-active";
+
+                // Visual feedback
+                searchInput.style.borderColor = "#22C55E";
+            } else {
+                nameVal.textContent = "Not Found";
+                addressVal.textContent = "N/A";
+                statusVal.textContent = "Inactive";
+                statusVal.className = "value status-inactive";
+
+                // Visual feedback
+                searchInput.style.borderColor = "#EF4444";
+            }
+        });
+
+        // Search on Enter
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchBtn.click();
+        });
+    }
+
+    // Reset Button logic
+    const resetBtn = document.querySelector('.btn-reset');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            // Clear meter digits
+            const digits = document.querySelectorAll('.digit-box input');
+            digits.forEach(input => input.value = "0");
+
+            // Clear remarks
+            const remarks = document.querySelector('.remarks-group textarea');
+            if (remarks) remarks.value = "";
+
+            // Clear search info if desired (optional)
+            if (searchInput) {
+                searchInput.value = "";
+                searchInput.style.borderColor = "";
+                nameVal.textContent = "---";
+                addressVal.textContent = "---";
+                statusVal.textContent = "---";
+                statusVal.className = "value";
+            }
+        });
+    }
+
+    // Meter digit auto-tab logic
+    const digits = document.querySelectorAll('.digit-box input');
+    digits.forEach((input, idx) => {
+        input.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && idx < digits.length - 1) {
+                digits[idx + 1].focus();
+            }
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && e.target.value.length === 0 && idx > 0) {
+                digits[idx - 1].focus();
+            }
+        });
+    });
+}
 
 function initAdminPageContent() {
     const path = window.location.pathname;
@@ -50,46 +137,7 @@ function initAdminPageContent() {
         if (aform) aform.onsubmit = window.addAnnouncement;
     }
 }
-
-function renderAdminDashboard(accounts) {
-    const userCount = accounts.filter(acc => acc.role === 'user').length;
-    document.getElementById('total-users-count').textContent = userCount;
-
-    // For demo, assume "pending" if any week is 0
-    const pendingCount = accounts.filter(acc =>
-        acc.role === 'user' && acc.billing.weeks.some(w => w === 0)
-    ).length;
-    document.getElementById('pending-bills-count').textContent = pendingCount;
-}
-
-function renderManageBills(accounts) {
-    const tableBody = document.getElementById('user-bills-table');
-    if (!tableBody) return;
-
-    let html = '';
-    accounts.forEach((acc, index) => {
-        if (acc.role !== 'user') return;
-
-        const total = BillingSystem.getTotalBill(acc);
-        html += `
-            <tr>
-                <td>${acc.username}</td>
-                <td>${acc.meterNumber}</td>
-                <td>${acc.billing.month}</td>
-                <td>₱ ${total.toFixed(2)}</td>
-                <td>
-                    <button class="btn btn-accent btn-sm" onclick="openEditModal(${index})">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="btn btn-primary btn-sm" onclick="archiveUserMonth(${index})">
-                        <i class="fas fa-archive"></i> Archive
-                    </button>
-                </td>
-            </tr>
-        `;
-    });
-    tableBody.innerHTML = html;
-}
+// Rest of the file exists below, containing helper functions...
 
 // Admin Announcements
 window.addAnnouncement = (e) => {

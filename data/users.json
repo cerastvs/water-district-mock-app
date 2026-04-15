@@ -1,0 +1,42 @@
+[
+  {
+    "username": "user",
+    "password": "user123",
+    "role": "user",
+    "name": "Juan Dela Cruz",
+    "address": "123 Main St., Brgy. San Jose",
+    "meterNumber": "WD-001",
+    "billing": {
+      "month": "April",
+      "deadline": "April 30, 2026",
+      "weeks": [250, 300, 200, 350]
+    },
+    "history": [
+      { "month": "March", "total": 900 },
+      { "month": "February", "total": 1100 }
+    ]
+  },
+  {
+    "username": "maria",
+    "password": "password123",
+    "role": "user",
+    "name": "Maria Clara",
+    "address": "456 Rizal Ave., Brgy. Poblacion",
+    "meterNumber": "WD-042",
+    "billing": {
+      "month": "April",
+      "deadline": "April 30, 2026",
+      "weeks": [150, 200, 180, 210]
+    },
+    "history": [
+      { "month": "March", "total": 800 },
+      { "month": "February", "total": 750 }
+    ]
+  },
+  {
+    "username": "admin",
+    "password": "admin123",
+    "role": "admin",
+    "name": "System Administrator"
+  }
+]

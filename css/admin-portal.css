@@ -156,6 +156,10 @@ body.admin-portal {
     color: #16A34A;
 }
 
+.consumer-info-box .status-inactive {
+    color: #EF4444;
+}
+
 /* Reading Preview */
 .history-chart {
     display: flex;

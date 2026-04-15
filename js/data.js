@@ -1,4 +1,5 @@
-const initialUsers = [
+// Shared initial data as fallback
+const initialUsersFallback = [
   {
     username: "user",
     password: "user123",
@@ -9,7 +10,7 @@ const initialUsers = [
     billing: {
       month: "April",
       deadline: "April 30, 2026",
-      weeks: [250, 300, 200, 350] // amounts in ₱
+      weeks: [250, 300, 200, 350]
     },
     history: [
       { month: "March", total: 900 },
@@ -26,7 +27,7 @@ const initialUsers = [
     billing: {
       month: "April",
       deadline: "April 30, 2026",
-      weeks: [150, 200, 180, 210] // amounts in ₱
+      weeks: [150, 200, 180, 210]
     },
     history: [
       { month: "March", total: 800 },
@@ -41,7 +42,7 @@ const initialUsers = [
   }
 ];
 
-const initialAnnouncements = [
+const initialAnnouncementsFallback = [
   { date: "April 1, 2026", message: "Water interruption advisory on April 10 from 8AM to 5PM due to system maintenance." },
   { date: "March 15, 2026", message: "New online and convenience store payment channels are now available." }
 ];
@@ -78,12 +79,44 @@ window.BillingSystem = {
   }
 };
 
-// Initialize data if not present or missing deadline updates
-const existingAccounts = JSON.parse(localStorage.getItem("accounts"));
-if (!existingAccounts || !existingAccounts[0].billing || !existingAccounts[0].billing.deadline || existingAccounts.length < 3) {
-  localStorage.setItem("accounts", JSON.stringify(initialUsers));
+// Initialize data from JSON or fallback
+async function initializeAppData() {
+  const accounts = localStorage.getItem("accounts");
+  const announcements = localStorage.getItem("announcements");
+
+  if (!accounts) {
+    try {
+      // Adjust path based on current location
+      const prefix = window.location.pathname.includes('/admin/') || window.location.pathname.includes('/user/') || window.location.pathname.includes('/pages/') ? '../' : '';
+      const response = await fetch(prefix + 'data/users.json');
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("accounts", JSON.stringify(data));
+      } else {
+        localStorage.setItem("accounts", JSON.stringify(initialUsersFallback));
+      }
+    } catch (e) {
+      console.warn("Using fallback user data due to fetch error:", e);
+      localStorage.setItem("accounts", JSON.stringify(initialUsersFallback));
+    }
+  }
+
+  if (!announcements) {
+    try {
+      const prefix = window.location.pathname.includes('/admin/') || window.location.pathname.includes('/user/') || window.location.pathname.includes('/pages/') ? '../' : '';
+      const response = await fetch(prefix + 'data/announcements.json');
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("announcements", JSON.stringify(data));
+      } else {
+        localStorage.setItem("announcements", JSON.stringify(initialAnnouncementsFallback));
+      }
+    } catch (e) {
+      console.warn("Using fallback announcement data due to fetch error:", e);
+      localStorage.setItem("announcements", JSON.stringify(initialAnnouncementsFallback));
+    }
+  }
 }
 
-if (!localStorage.getItem("announcements")) {
-  localStorage.setItem("announcements", JSON.stringify(initialAnnouncements));
-}
+// Start initialization
+initializeAppData();

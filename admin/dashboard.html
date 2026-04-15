@@ -1,180 +1,272 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Water District</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/admin-portal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard - Water District</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/layout.css" />
-  <link rel="stylesheet" href="../css/admin-portal.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Permanent+Marker&display=swap"
-    rel="stylesheet" />
-</head>
-
-<body class="admin-portal">
-  <div class="dashboard-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <div><i class="fas fa-tint" style="color: #60A5FA; font-size: 28px;"></i></div>
-        <div>
-          <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2;">SRNE Water<br><span
-              style="font-size: 0.6rem; color: #94A3B8; font-weight: 600; letter-spacing: 0.5px;">ADMIN
-              PORTAL</span></h2>
-        </div>
-      </div>
-
-      <div class="sidebar-section">MAIN MENU</div>
-      <nav class="sidebar-menu">
-        <a href="dashboard.html" class="active">
-          <i class="fas fa-chart-line"></i> Overview
-        </a>
-        <a href="manage-bills.html">
-          <i class="fas fa-file-invoice-dollar"></i> Manage Bills
-        </a>
-        <a href="manage-users.html">
-          <i class="fas fa-users"></i> Manage Users
-        </a>
-        <a href="announcements.html">
-          <i class="fas fa-bullhorn"></i> Announcements
-        </a>
-      </nav>
-
-      <div
-        style="margin-top: auto; padding: 1rem; border-top: 1px solid rgba(255,255,255,0.05); margin-left: -1rem; margin-right: -1rem; padding-left: 2rem;">
-        <div style="display: flex; align-items: center; gap: 12px; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div
-              style="width: 36px; height: 36px; background-color: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-              A</div>
-            <div>
-              <div style="font-size: 0.85rem; font-weight: 600; color: white;" id="sidebar-adminname">
-                Admin</div>
-              <a href="../login.html" class="logout-link"
-                style="font-size: 0.75rem; color: #94A3B8; text-decoration: none; display: block; margin-top: 2px;">Sign
-                Out</a>
-            </div>
+  <body class="admin-portal">
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div>
+            <i class="fas fa-tint" style="color: #60a5fa; font-size: 28px"></i>
           </div>
-          <i class="fas fa-sign-out-alt" onclick="window.location.href='../login.html'"
-            style="color: #94A3B8; font-size: 1rem; cursor: pointer; padding-right: 1rem;"></i>
+          <div>
+            <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2">
+              SRNE Water<br /><span
+                style="
+                  font-size: 0.6rem;
+                  color: #94a3b8;
+                  font-weight: 600;
+                  letter-spacing: 0.5px;
+                "
+                >ADMIN PORTAL</span
+              >
+            </h2>
+          </div>
         </div>
-      </div>
-    </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="portal-container">
-        <!-- Header -->
-        <header class="portal-header">
-          <div class="brand-scribble">ADMIN</div>
-          <h1>SANTA ROSA NUEVA ECIJA WATER DISTRICT</h1>
-          <p>Admin Meter Data Entry Portal</p>
-        </header>
+        <div class="sidebar-section">MAIN MENU</div>
+        <nav class="sidebar-menu">
+          <a href="dashboard.html" class="active">
+            <i class="fas fa-chart-line"></i> Overview
+          </a>
+          <a href="manage-bills.html">
+            <i class="fas fa-file-invoice-dollar"></i> Manage Bills
+          </a>
+          <a href="manage-users.html">
+            <i class="fas fa-users"></i> Manage Users
+          </a>
+          <a href="announcements.html">
+            <i class="fas fa-bullhorn"></i> Announcements
+          </a>
+        </nav>
 
-        <!-- Top Grid: Search & Preview -->
-        <div class="portal-grid-top">
-          <!-- Search Consumer -->
-          <section class="portal-card">
-            <h2>SEARCH CONSUMER</h2>
-            <div class="search-section">
-              <div class="search-input-group">
-                <label>Consumer Meter Number</label>
-                <div class="search-controls">
-                  <input type="text" placeholder="e.g. 8004..." id="consumer-meter-input">
-                  <button class="btn-search">SEARCH</button>
+        <div
+          style="
+            margin-top: auto;
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-left: -1rem;
+            margin-right: -1rem;
+            padding-left: 2rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              justify-content: space-between;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 12px">
+              <div
+                style="
+                  width: 36px;
+                  height: 36px;
+                  background-color: #3b82f6;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: bold;
+                "
+              >
+                A
+              </div>
+              <div>
+                <div
+                  style="font-size: 0.85rem; font-weight: 600; color: white"
+                  id="sidebar-adminname"
+                >
+                  Admin
+                </div>
+                <a
+                  href="../login.html"
+                  class="logout-link"
+                  style="
+                    font-size: 0.75rem;
+                    color: #94a3b8;
+                    text-decoration: none;
+                    display: block;
+                    margin-top: 2px;
+                  "
+                  >Sign Out</a
+                >
+              </div>
+            </div>
+            <i
+              class="fas fa-sign-out-alt"
+              onclick="window.location.href = '../login.html'"
+              style="
+                color: #94a3b8;
+                font-size: 1rem;
+                cursor: pointer;
+                padding-right: 1rem;
+              "
+            ></i>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="portal-container">
+          <!-- Header -->
+          <header class="portal-header">
+            <h1>SANTA ROSA NUEVA ECIJA WATER DISTRICT</h1>
+            <p>Admin Meter Data Entry Portal</p>
+          </header>
+
+          <!-- Top Grid: Search & Preview -->
+          <div class="portal-grid-top">
+            <!-- Search Consumer -->
+            <section class="portal-card">
+              <h2>SEARCH CONSUMER</h2>
+              <div class="search-section">
+                <div class="search-input-group">
+                  <label>Consumer Meter Number</label>
+                  <div class="search-controls">
+                    <input
+                      type="text"
+                      placeholder="e.g. 8004..."
+                      id="consumer-meter-input"
+                    />
+                    <button class="btn-search">SEARCH</button>
+                  </div>
+                </div>
+                <div class="consumer-info-box">
+                  <span class="label">Name:</span>
+                  <span class="value" id="consumer-name">Juan dela Cruz</span>
+                  <span class="label">Address:</span>
+                  <span class="value" id="consumer-address"
+                    >Barangay Sto. Niño</span
+                  >
+                  <span class="label">Status:</span>
+                  <span class="value status-active" id="consumer-status"
+                    >Active</span
+                  >
                 </div>
               </div>
-              <div class="consumer-info-box">
-                <span class="label">Name:</span>
-                <span class="value" id="consumer-name">Juan dela Cruz</span>
-                <span class="label">Address:</span>
-                <span class="value" id="consumer-address">Barangay Sto. Niño</span>
-                <span class="label">Status:</span>
-                <span class="value status-active" id="consumer-status">Active</span>
+            </section>
+
+            <!-- Reading Preview -->
+            <section class="portal-card">
+              <h2>READING PREVIEW</h2>
+              <div class="reading-preview-content">
+                <p
+                  style="
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    margin-bottom: 12px;
+                  "
+                >
+                  Consumption History
+                </p>
+                <div class="history-chart">
+                  <div class="bar" style="height: 30%"></div>
+                  <div class="bar" style="height: 50%"></div>
+                  <div class="bar" style="height: 70%"></div>
+                  <div class="bar" style="height: 55%"></div>
+                  <div class="bar" style="height: 85%"></div>
+                </div>
+                <div class="chart-labels">
+                  <span>Mon</span>
+                  <span>Apr</span>
+                  <span>Week</span>
+                  <span>Week</span>
+                  <span>Nov</span>
+                </div>
               </div>
+            </section>
+          </div>
+
+          <!-- Input Current Meter Reading -->
+          <section class="portal-card mb-24">
+            <h2>INPUT CURRENT METER READING</h2>
+            <div class="meter-reading-section">
+              <div class="date-group">
+                <label>Reading Date</label>
+                <div class="date-input-wrapper">
+                  <i class="far fa-calendar-alt"></i>
+                  <input type="text" value="Oct 26, 2026" readonly />
+                </div>
+              </div>
+              <div class="meter-group">
+                <label>Meter Reading (Cubic Meters)</label>
+                <div class="meter-digits">
+                  <div class="digit-box label-box">M³</div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                  <div class="digit-box">
+                    <input type="text" maxlength="1" value="0" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="remarks-group">
+              <label>READING REMARKS</label>
+              <textarea placeholder="Add any observation..."></textarea>
             </div>
           </section>
 
-          <!-- Reading Preview -->
-          <section class="portal-card">
-            <h2>READING PREVIEW</h2>
-            <div class="reading-preview-content">
-              <p style="font-size: 0.85rem; font-weight: 600; margin-bottom: 12px;">Consumption History</p>
-              <div class="history-chart">
-                <div class="bar" style="height: 30%;"></div>
-                <div class="bar" style="height: 50%;"></div>
-                <div class="bar" style="height: 70%;"></div>
-                <div class="bar" style="height: 55%;"></div>
-                <div class="bar" style="height: 85%;"></div>
-              </div>
-              <div class="chart-labels">
-                <span>Mon</span>
-                <span>Apr</span>
-                <span>Week</span>
-                <span>Week</span>
-                <span>Nov</span>
-              </div>
-            </div>
-          </section>
+          <!-- Spacer for Footer -->
+          <div class="mt-80"></div>
         </div>
+      </main>
+    </div>
 
-        <!-- Input Current Meter Reading -->
-        <section class="portal-card mb-24">
-          <h2>INPUT CURRENT METER READING</h2>
-          <div class="meter-reading-section">
-            <div class="date-group">
-              <label>Reading Date</label>
-              <div class="date-input-wrapper">
-                <i class="far fa-calendar-alt"></i>
-                <input type="text" value="Oct 26, 2026" readonly>
-              </div>
-            </div>
-            <div class="meter-group">
-              <label>Meter Reading (Cubic Meters)</label>
-              <div class="meter-digits">
-                <div class="digit-box label-box">M³</div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-                <div class="digit-box"><input type="text" maxlength="1" value="0"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="remarks-group">
-            <label>READING REMARKS</label>
-            <textarea placeholder="Add any observation..."></textarea>
-          </div>
-        </section>
-
-        <!-- Spacer for Footer -->
-        <div class="mt-80"></div>
+    <!-- Sticky Footer Banner -->
+    <footer class="portal-footer">
+      <div class="footer-text">
+        <h3>Review and confirm the reading below</h3>
+        <p>Review and confirm the reading below.</p>
       </div>
-    </main>
-  </div>
+      <div class="footer-actions">
+        <button class="btn-footer btn-reset">RESET</button>
+        <button class="btn-footer btn-save">SAVE AND NEXT CONSUMER</button>
+      </div>
+    </footer>
 
-  <!-- Sticky Footer Banner -->
-  <footer class="portal-footer">
-    <div class="footer-text">
-      <h3>Review and confirm the reading below</h3>
-      <p>Review and confirm the reading below.</p>
-    </div>
-    <div class="footer-actions">
-      <button class="btn-footer btn-reset">RESET</button>
-      <button class="btn-footer btn-save">SAVE AND NEXT CONSUMER</button>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="../js/data.js"></script>
-  <script src="../js/main.js"></script>
-  <script src="../js/admin.js"></script>
-</body>
-
+    <!-- Scripts -->
+    <script src="../js/data.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+  </body>
 </html>
