@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Announcements - Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div><i class="fas fa-tint" style="color: #60A5FA; font-size: 28px;"></i></div>
+                <div>
+                    <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2;">SRNE Water<br><span
+                            style="font-size: 0.6rem; color: #94A3B8; font-weight: 600; letter-spacing: 0.5px;">ADMIN
+                            PORTAL</span></h2>
+                </div>
+            </div>
+
+            <div class="sidebar-section">MAIN MENU</div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html">
+                    <i class="fas fa-chart-line"></i> Overview
+                </a>
+                <a href="manage-bills.html">
+                    <i class="fas fa-file-invoice-dollar"></i> Manage Bills
+                </a>
+                <a href="manage-users.html">
+                    <i class="fas fa-users"></i> Manage Users
+                </a>
+                <a href="announcements.html" class="active">
+                    <i class="fas fa-bullhorn"></i> Announcements
+                </a>
+            </nav>
+
+            <div
+                style="margin-top: auto; padding: 1rem; border-top: 1px solid rgba(255,255,255,0.05); margin-left: -1rem; margin-right: -1rem; padding-left: 2rem;">
+                <div style="display: flex; align-items: center; gap: 12px; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="width: 36px; height: 36px; background-color: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                            A</div>
+                        <div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: white;" id="sidebar-adminname">
+                                Admin</div>
+                            <a href="../login.html" class="logout-link"
+                                style="font-size: 0.75rem; color: #94A3B8; text-decoration: none; display: block; margin-top: 2px;">Sign
+                                Out</a>
+                        </div>
+                    </div>
+                    <i class="fas fa-sign-out-alt" onclick="window.location.href='../login.html'"
+                        style="color: #94A3B8; font-size: 1rem; cursor: pointer; padding-right: 1rem;"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="user-info">
+                    <span>Admin Panel | <strong id="admin-name">Admin</strong></span>
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+                <h1>Manage Announcements</h1>
+
+                <div class="dashboard-grid">
+                    <div class="card" style="align-self: start;">
+                        <h3>Add New Announcement</h3>
+                        <form id="announcement-form">
+                            <div class="form-group">
+                                <label for="announcement-date">Date (Leave blank for today):</label>
+                                <input type="date" id="announcement-date" name="announcement-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="announcement-message">Message:</label>
+                                <textarea id="announcement-message" name="announcement-message" rows="4"
+                                    style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Post
+                                Announcement</button>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>Active Announcements</h3>
+                        <div id="admin-announcements-list">
+                            <!-- JS generates existing announcements here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>
