@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Wait for data initialization if needed
+    if (window.dataReady) await window.dataReady;
+
     // Check if admin is logged in
     const user = JSON.parse(localStorage.getItem('currentUser'));
     if (!user || user.role !== 'admin') {
@@ -137,7 +140,47 @@ function initAdminPageContent() {
         if (aform) aform.onsubmit = window.addAnnouncement;
     }
 }
-// Rest of the file exists below, containing helper functions...
+function renderAdminDashboard(accounts) {
+    const userCount = accounts.filter(acc => acc.role === 'user').length;
+    const totalCountElem = document.getElementById('total-users-count');
+    if (totalCountElem) totalCountElem.textContent = userCount;
+
+    // For demo, assume "pending" if any week is 0
+    const pendingCount = accounts.filter(acc =>
+        acc.role === 'user' && acc.billing.weeks.some(w => w === 0)
+    ).length;
+    const pendingCountElem = document.getElementById('pending-bills-count');
+    if (pendingCountElem) pendingCountElem.textContent = pendingCount;
+}
+
+function renderManageBills(accounts) {
+    const tableBody = document.getElementById('user-bills-table');
+    if (!tableBody) return;
+
+    let html = '';
+    accounts.forEach((acc, index) => {
+        if (acc.role !== 'user') return;
+
+        const total = window.BillingSystem.getTotalBill(acc);
+        html += `
+            <tr>
+                <td>${acc.username}</td>
+                <td>${acc.meterNumber}</td>
+                <td>${acc.billing.month}</td>
+                <td>₱ ${total.toLocaleString()}</td>
+                <td>
+                    <button class="btn btn-accent btn-sm" onclick="openEditModal(${index})">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="archiveUserMonth(${index})">
+                        <i class="fas fa-archive"></i> Archive
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+    tableBody.innerHTML = html;
+}
 
 // Admin Announcements
 window.addAnnouncement = (e) => {

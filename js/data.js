@@ -118,5 +118,5 @@ async function initializeAppData() {
   }
 }
 
-// Start initialization
-initializeAppData();
+// Start initialization and export the promise
+window.dataReady = initializeAppData();

@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  // Wait for data initialization if needed
+  if (window.dataReady) await window.dataReady;
+
   // Check if user is logged in
   let user = JSON.parse(localStorage.getItem("currentUser"));
   if (!user || user.role !== "user") {
