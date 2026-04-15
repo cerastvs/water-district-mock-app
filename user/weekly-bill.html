@@ -26,6 +26,9 @@
 
             <div class="sidebar-section">MAIN MENU</div>
             <nav class="sidebar-menu">
+                <a href="dashboard.html">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
                 <a href="weekly-bill.html" class="active">
                     <i class="fas fa-calendar-alt"></i> Weekly Bill
                 </a>
@@ -59,15 +62,16 @@
                     <div style="display: flex; align-items: center; gap: 12px;">
                         <div
                             style="width: 36px; height: 36px; background-color: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                            A</div>
+                            U</div>
                         <div>
-                            <div style="font-size: 0.85rem; font-weight: 600; color: white;">Admin User</div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: white;" id="sidebar-username">User
+                            </div>
                             <a href="../login.html" class="logout-link"
                                 style="font-size: 0.75rem; color: #94A3B8; text-decoration: none; display: block; margin-top: 2px;">Sign
                                 Out</a>
                         </div>
                     </div>
-                    <i class="fas fa-sign-out-alt"
+                    <i class="fas fa-sign-out-alt" onclick="window.location.href='../login.html'"
                         style="color: #94A3B8; font-size: 1rem; cursor: pointer; padding-right: 1rem;"></i>
                 </div>
             </div>
