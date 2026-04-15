@@ -66,6 +66,118 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Weekly Bill Styling */
+.weekly-list {
+  padding: 1rem 0;
+}
+
+.weekly-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.total-bill {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  color: var(--primary-navy);
+}
+
+/* History Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.status-paid {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Usage Comparison */
+.comparison-card .stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.trend-message {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.trend-up {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.trend-down {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.trend-same {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  width: 400px;
+  max-width: 90%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
 /* Specific Sidebar Enhancements */
 .sidebar {
   display: flex;
@@ -74,4 +186,185 @@
 
 .sidebar .logo span {
   color: var(--accent-cyan);
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+.header-title {
+  color: var(--primary-navy) !important;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 4px !important;
+  letter-spacing: 0.5px;
+}
+
+.header-subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.top-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.info-card h3 {
+  font-size: 0.8rem !important;
+  color: var(--text-muted) !important;
+  font-weight: 700;
+  margin-bottom: 1rem !important;
+}
+
+.boxed-value-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.boxed-char {
+  width: 42px;
+  height: 52px;
+  background-color: #F0F6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1E3A8A;
+}
+
+.boxed-char.symbol {
+  background-color: transparent;
+  border: none;
+  width: auto;
+  color: #94A3B8;
+  font-size: 1.25rem;
+  padding-right: 4px;
+}
+
+.card-hint {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.consumption-breakdown {
+  margin-bottom: 24px;
+}
+
+.consumption-breakdown h3 {
+  font-size: 0.8rem !important;
+  color: var(--text-muted) !important;
+  font-weight: 700;
+  margin-bottom: 1.25rem !important;
+  text-transform: uppercase;
+}
+
+.weeks-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.week-card {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.week-card-title {
+  color: #3B82F6;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.week-card-date {
+  color: #64748B;
+  font-size: 0.75rem;
+  margin-bottom: 16px;
+}
+
+.week-card-input {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1E293B;
+}
+
+.week-card.final {
+  background-color: #F0F6FF;
+  border: 1px solid #BFDBFE;
+}
+
+.week-card.final .week-card-input {
+  border: 2px solid #0F172A;
+}
+
+.deadline-banner {
+  background: linear-gradient(to right, #1E3A8A, #2563EB);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.deadline-info h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.deadline-info p {
+  font-size: 0.85rem;
+  color: #DBEAFE;
+}
+
+.deadline-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.deadline-action span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #DBEAFE;
+}
+
+.deadline-pill {
+  background-color: #60A5FA;
+  color: white;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.95rem;
 }

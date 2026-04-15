@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <div class="dashboard-container">
         <!-- Sidebar -->
@@ -53,23 +55,39 @@
             </header>
 
             <section class="dashboard-content">
-                <h1>Dashboard Overview</h1>
+                <h1>Welcome, <span id="display-username">User</span>!</h1>
                 <div class="dashboard-grid">
-                    <!-- Cards or widgets will go here -->
                     <div class="card">
-                        <h3>Current Balance</h3>
-                        <p class="amount">₱ 0.00</p>
+                        <h3 id="bill-month-label">Total Bill (Current Month)</h3>
+                        <p class="amount" id="dashboard-total">₱ 0.00</p>
                     </div>
                     <div class="card">
-                        <h3>Monthly Usage</h3>
-                        <p>0 m³</p>
+                        <h3>Meter Number</h3>
+                        <p class="amount" style="font-size: 1.5rem;" id="dashboard-meter">---</p>
                     </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Recent History</h3>
+                    <table class="history-preview">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Total Paid</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-preview-body">
+                            <!-- History preview will go here -->
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </main>
     </div>
 
     <script src="../js/main.js"></script>
+    <script src="../js/data.js"></script>
     <script src="../js/user.js"></script>
 </body>
+
 </html>

@@ -13,7 +13,8 @@ function login(username, password) {
 
   if (user) {
     localStorage.setItem("role", user.role);
-    localStorage.setItem("currentUser", JSON.stringify({ username: user.username, role: user.role }));
+    const { password, ...userWithoutPassword } = user;
+    localStorage.setItem("currentUser", JSON.stringify(userWithoutPassword));
 
     if (user.role === "admin") {
       window.location.href = "admin/dashboard.html";

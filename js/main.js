@@ -1,16 +1,3 @@
-// State Management Utility
-const initialUsers = [
-  { username: "user", password: "user123", role: "user" },
-  { username: "admin", password: "admin123", role: "admin" }
-];
+// Legacy file, data initialization is now handled by data.js
+// Intentionally left empty to avoid SyntaxError collisions
 
-function initializeApp() {
-  if (!localStorage.getItem("accounts")) {
-    localStorage.setItem("accounts", JSON.stringify(initialUsers));
-  }
-}
-
-// Ensure the app is initialized on load
-window.addEventListener("DOMContentLoaded", () => {
-  initializeApp();
-});
