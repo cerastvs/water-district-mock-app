@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Consumption - Water District</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .mindful-page-header {
+            text-align: center;
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            color: white;
+            padding: 2.5rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .mindful-page-header h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .mindful-page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .mindful-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mindful-list li {
+            position: relative;
+            padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #60A5FA;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #334155;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .mindful-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-left-color: #3B82F6;
+        }
+
+        .mindful-list li::before {
+            content: "\f06c";
+            /* fa-leaf */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 1.25rem;
+            top: 1.25rem;
+            color: #60A5FA;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div><i class="fas fa-tint" style="color: #60A5FA; font-size: 28px;"></i></div>
+                <div>
+                    <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2;">SRNE Water<br><span
+                            style="font-size: 0.6rem; color: #94A3B8; font-weight: 600; letter-spacing: 0.5px;">DISTRICT
+                            PORTAL</span></h2>
+                </div>
+            </div>
+
+            <div class="sidebar-section">MAIN MENU</div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="weekly-bill.html">
+                    <i class="fas fa-calendar-alt"></i> Weekly Bill
+                </a>
+                <a href="history.html">
+                    <i class="fas fa-history"></i> History
+                </a>
+                <a href="announcements.html">
+                    <i class="fas fa-bell"></i> Notifications
+                </a>
+            </nav>
+
+            <div class="sidebar-section">UTILITIES</div>
+            <nav class="sidebar-menu">
+                <a href="announcements.html">
+                    <i class="fas fa-bullhorn"></i> Special Announcement
+                </a>
+                <a href="usage.html">
+                    <i class="fas fa-chart-line"></i> Usage Comparison
+                </a>
+                <a href="goals.html">
+                    <i class="fas fa-bullseye"></i> Goal Setting
+                </a>
+                <a href="mindful.html" class="active">
+                    <i class="fas fa-lightbulb"></i> Mindful Consumption
+                </a>
+            </nav>
+
+            <div
+                style="margin-top: auto; padding: 1rem; border-top: 1px solid rgba(255,255,255,0.05); margin-left: -1rem; margin-right: -1rem; padding-left: 2rem;">
+                <div style="display: flex; align-items: center; gap: 12px; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="width: 36px; height: 36px; background-color: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                            U</div>
+                        <div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: white;" id="sidebar-username">User
+                            </div>
+                            <a href="../login.html" class="logout-link"
+                                style="font-size: 0.75rem; color: #94A3B8; text-decoration: none; display: block; margin-top: 2px;">Sign
+                                Out</a>
+                        </div>
+                    </div>
+                    <i class="fas fa-sign-out-alt" onclick="window.location.href='../login.html'"
+                        style="color: #94A3B8; font-size: 1rem; cursor: pointer; padding-right: 1rem;"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-info">
+                    <span>Welcome, <strong id="user-name">User</strong></span>
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+                <div class="mindful-page-header">
+                    <h1>Mindful Consumption</h1>
+                    <p>Adopt these principles for sustainable and impactful daily living</p>
+                </div>
+
+                <ul class="mindful-list">
+                    <li>Respect the infrastructure that brings clean water to your doorstep, as it is a luxury many in
+                        the world do not have.</li>
+                    <li>A garden that thrives on local rainfall is a garden that lives in harmony with its environment.
+                    </li>
+                    <li>Every drop saved today is a deposit into the environmental bank account of your children.</li>
+                    <li>True efficiency isn't just about using less; it's about being mindful of the purpose behind
+                        every use.</li>
+                    <li>Water is the lifeblood of our community; when you waste it, you deplete the collective well.
+                    </li>
+                    <li>The sound of a drip shouldn't be background noise; it should be an urgent call to action.</li>
+                    <li>Invest in quality plumbing fixtures once, and they will pay you back in savings for a decade.
+                    </li>
+                    <li>Be the neighbor who sets the standard for conservation, not the one who sets the standard for
+                        consumption.</li>
+                    <li>Don't mistake abundance for infinity; just because the water flows now doesn't mean it always
+                        will.</li>
+                    <li>Sustainable living isn't about sacrifice; it's about shifting your perspective on what you truly
+                        need.</li>
+                    <li>Observe how nature manages water—it never wastes a drop and recycles everything it uses.</li>
+                    <li>The most effective water-saving tool you own is your own awareness.</li>
+                    <li>Treat your water bill as a report card for your environmental stewardship.</li>
+                    <li>When you save water, you are also protecting the local rivers and ecosystems that support
+                        wildlife.</li>
+                    <li>A leak-free home is a healthy home; water where it doesn't belong causes more than just a high
+                        bill.</li>
+                    <li>View conservation not as a chore, but as a daily practice of gratitude for a vital resource.
+                    </li>
+                    <li>The best time to fix a leak was yesterday; the second best time is right now.</li>
+                    <li>Knowledge is knowing water is scarce; wisdom is acting like it.</li>
+                    <li>Use your water meter as a tool for discovery, not just a tool for measurement.</li>
+                    <li>Remember that water travels a long journey to reach you; treat it with the respect that journey
+                        deserves.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/user.js"></script>
+</body>
+
+</html>
