@@ -186,6 +186,7 @@ function renderManageBills(accounts) {
 window.addAnnouncement = (e) => {
     e.preventDefault();
     const dateInput = document.getElementById('announcement-date').value;
+    const titleInput = document.getElementById('announcement-title').value;
     const messageInput = document.getElementById('announcement-message').value;
     if (!messageInput) return;
 
@@ -201,7 +202,11 @@ window.addAnnouncement = (e) => {
         dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
-    announcements.unshift({ date: dateStr, message: messageInput });
+    announcements.unshift({
+        date: dateStr,
+        title: titleInput || "Water Service Advisory",
+        message: messageInput
+    });
     localStorage.setItem('announcements', JSON.stringify(announcements));
 
     document.getElementById('announcement-form').reset();
@@ -226,15 +231,21 @@ function renderAdminAnnouncements() {
         listContainer.innerHTML = '<p>No announcements found.</p>';
         return;
     }
-    listContainer.innerHTML = announcements.map((a, index) => `
-        <div class="card" style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: start; background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; box-shadow: none;">
-            <div style="flex-grow:1; padding-right: 1.5rem;">
-                <h4 style="margin:0; color:#1E3A8A;">${a.date}</h4>
-                <p style="margin-top: 0.5rem; color: #334155;">${a.message}</p>
+    listContainer.innerHTML = announcements.map((a, index) => {
+        const title = a.title || "Water Service Advisory";
+        const formattedMessage = a.message.replace(/\n/g, '<br>');
+
+        return `
+            <div class="card" style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: start; background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; box-shadow: none;">
+                <div style="flex-grow:1; padding-right: 1.5rem;">
+                    <h4 style="margin:0; color:#1E3A8A;">${a.date}</h4>
+                    <p style="margin-top: 0.5rem; color: #1E293B; font-weight: bold; margin-bottom: 0.25rem;">${title}</p>
+                    <p style="margin-top: 0; color: #334155; line-height: 1.5;">${formattedMessage}</p>
+                </div>
+                <button class="btn btn-accent btn-sm" onclick="deleteAnnouncement(${index})"><i class="fas fa-trash"></i> Delete</button>
             </div>
-            <button class="btn btn-accent btn-sm" onclick="deleteAnnouncement(${index})"><i class="fas fa-trash"></i> Delete</button>
-        </div>
-    `).join("");
+        `;
+    }).join("");
 }
 
 // Global functions for onclick handlers

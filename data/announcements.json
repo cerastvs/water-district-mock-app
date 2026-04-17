@@ -1,10 +1,22 @@
 [
-    {
-        "date": "April 1, 2026",
-        "message": "Water interruption advisory on April 10 from 8AM to 5PM due to system maintenance."
-    },
-    {
-        "date": "March 15, 2026",
-        "message": "New online and convenience store payment channels are now available."
-    }
+  {
+    "date": "Apr 15, 2026",
+    "message": "Water Service Advisory\nAng SRWD ay magsasagawa ng System Flushing bukas, April 16, 2026 (2PM - onwards). Makararanas ng paghina at pagdumi ng supply ng tubig sa Brgy. Del Pilar, Gomez, Luna, San Mariano, Mabini at Tramo-Del Pilar habang at pagkatapos isagawa ang naturang aktibidad.\nPaunawa sa abala."
+  },
+  {
+    "date": "Apr 14, 2026",
+    "message": "Don't forget to log in and accomplish your water-saving goals for this week to stay on track with your progress."
+  },
+  {
+    "date": "Apr 13, 2026",
+    "message": "Congratulations on finishing one of your tasks; you are officially making a measurable difference in your water consumption."
+  },
+  {
+    "date": "Apr 12, 2026",
+    "message": "Your weekly usage data is now ready for review, so please check your dashboard to see how your habits affected your bill."
+  },
+  {
+    "date": "Apr 11, 2026",
+    "message": "You are doing great work on your weekly challenge—keep checking off your tasks to reach your 5-week milestone."
+  }
 ]

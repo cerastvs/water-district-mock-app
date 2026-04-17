@@ -258,12 +258,24 @@ function renderAnnouncements(user) {
 
     const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
 
-    let announcementsHtml = announcements.map(a => `
-      <div class="card" style="margin-bottom: 1rem;">
-        <h4>${a.date}</h4>
-        <p style="margin-top: 0.5rem; color: #555;">${a.message}</p>
-      </div>
-    `).join("");
+    let announcementsHtml = announcements.map(a => {
+      const title = a.title || "Water Service Advisory";
+      const formattedMessage = a.message.replace(/\n/g, '<br>');
+
+      return `
+        <div class="card" style="margin-bottom: 1rem; border-left: 4px solid #3B82F6;">
+          <div style="padding-left: 10px;">
+            <p style="color: #1E293B; font-weight: bold; margin: 0 0 5px 0; font-size: 1rem;">
+              ${title}
+            </p>
+            <p style="color: #334155; margin: 0; line-height: 1.5;">
+              ${formattedMessage}
+            </p>
+            <small style="color: #64748B; display: block; margin-top: 8px;">${a.date}</small>
+          </div>
+        </div>
+      `;
+    }).join("");
 
     if (!announcementsHtml) announcementsHtml = "<p>No new announcements at this time.</p>";
 
