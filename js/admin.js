@@ -236,17 +236,46 @@ function renderAdminAnnouncements() {
         const formattedMessage = a.message.replace(/\n/g, '<br>');
 
         return `
-            <div class="card" style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: start; background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; box-shadow: none;">
+            <div class="card announcement-card" 
+                 style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: start; background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; box-shadow: none;"
+                 onclick="openAnnouncementModal(${index})">
                 <div style="flex-grow:1; padding-right: 1.5rem;">
                     <h4 style="margin:0; color:#1E3A8A;">${a.date}</h4>
                     <p style="margin-top: 0.5rem; color: #1E293B; font-weight: bold; margin-bottom: 0.25rem;">${title}</p>
                     <p style="margin-top: 0; color: #334155; line-height: 1.5;">${formattedMessage}</p>
                 </div>
-                <button class="btn btn-accent btn-sm" onclick="deleteAnnouncement(${index})"><i class="fas fa-trash"></i> Delete</button>
+                <button class="btn btn-accent btn-sm" onclick="event.stopPropagation(); deleteAnnouncement(${index})">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
             </div>
         `;
     }).join("");
 }
+
+window.openAnnouncementModal = (index) => {
+    const announcements = JSON.parse(localStorage.getItem('announcements')) || [];
+    const a = announcements[index];
+    if (!a) return;
+
+    const modal = document.getElementById('global-announcement-modal');
+    const modalTitle = document.getElementById('modal-announcement-title');
+    const modalDate = document.getElementById('modal-announcement-date');
+    const modalMessage = document.getElementById('modal-announcement-message');
+
+    if (modal && modalTitle && modalDate && modalMessage) {
+        modalTitle.textContent = a.title || "Water Service Advisory";
+        modalDate.textContent = a.date;
+        modalMessage.innerHTML = a.message.replace(/\n/g, '<br>');
+        modal.classList.remove('hidden');
+    }
+};
+
+window.closeAnnouncementModal = () => {
+    const modal = document.getElementById('global-announcement-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+};
 
 // Global functions for onclick handlers
 window.openEditModal = (index) => {

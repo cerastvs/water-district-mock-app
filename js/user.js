@@ -258,12 +258,12 @@ function renderAnnouncements(user) {
 
     const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
 
-    let announcementsHtml = announcements.map(a => {
+    let announcementsHtml = announcements.map((a, index) => {
       const title = a.title || "Water Service Advisory";
       const formattedMessage = a.message.replace(/\n/g, '<br>');
 
       return `
-        <div class="card" style="margin-bottom: 1rem; border-left: 4px solid #3B82F6;">
+        <div class="card announcement-card" style="margin-bottom: 1rem; border-left: 4px solid #3B82F6;" onclick="openAnnouncementModal(${index})">
           <div style="padding-left: 10px;">
             <p style="color: #1E293B; font-weight: bold; margin: 0 0 5px 0; font-size: 1rem;">
               ${title}
@@ -282,6 +282,31 @@ function renderAnnouncements(user) {
     container.innerHTML = pendingBillNotice + announcementsHtml;
   }
 }
+
+window.openAnnouncementModal = (index) => {
+  const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+  const a = announcements[index];
+  if (!a) return;
+
+  const modal = document.getElementById("global-announcement-modal");
+  const modalTitle = document.getElementById("modal-announcement-title");
+  const modalDate = document.getElementById("modal-announcement-date");
+  const modalMessage = document.getElementById("modal-announcement-message");
+
+  if (modal && modalTitle && modalDate && modalMessage) {
+    modalTitle.textContent = a.title || "Water Service Advisory";
+    modalDate.textContent = a.date;
+    modalMessage.innerHTML = a.message.replace(/\n/g, '<br>');
+    modal.classList.remove("hidden");
+  }
+};
+
+window.closeAnnouncementModal = () => {
+  const modal = document.getElementById("global-announcement-modal");
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+};
 
 function renderGoals(user) {
   const WATER_CHALLENGE_TASKS = [
