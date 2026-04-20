@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Clear Water Metrics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <style>
+    .sub-hero {
+      background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('../assets/images/hero-bg.jpg') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .content-section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      margin-bottom: 2rem;
+      color: var(--primary-navy);
+      border-bottom: 2px solid var(--accent-cyan);
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-light);
+      margin-bottom: 2rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 1rem;
+    }
+
+    .faq-question {
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    footer {
+      background: var(--primary-navy);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .navbar {
+      background-color: var(--primary-navy);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" id="navbar">
+      <a href="../index.html" class="logo">WaterDistrict</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="updates.html">Updates</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="../login.html" class="btn btn-accent">Login</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero">
+      <div class="container">
+        <h1>Our Services</h1>
+        <p>Comprehensive tools and information for our consumers.</p>
+      </div>
+    </section>
+
+    <section class="content-section container">
+      <div class="card">
+        <h2 class="section-title">Citizen’s Charter</h2>
+        <p>We believe in transparency and ease of use. Our Citizen’s Charter outlines our commitment to you, providing a step-by-step roadmap for system navigation, data input guidelines, and a clear definition of user rights and responsibilities.</p>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">Payment Information</h2>
+        <p>While Clear Water Metrics provides comprehensive bill estimations to help you plan your finances, please note that actual payments are handled directly by the Sta. Rosa Water District. Our system serves as your financial planning tool, while official transactions remain within the district’s authorized payment channels.</p>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">Consumer Page</h2>
+        <p>Take control of your utility costs through your personalized dashboard. Here, you can review your entire consumption history, compare weekly inputs, and view projected monthly totals. It’s your water usage, visualized.</p>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">FAQs (Frequently Asked Questions)</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <span class="faq-question">How do I read my physical meter?</span>
+            <p>Our guide provides a step-by-step process to help you accurately read your meter and input the data into our system.</p>
+          </div>
+          <div class="faq-item">
+            <span class="faq-question">Why is there a discrepancy in my estimation?</span>
+            <p>Estimations are based on the data provided and the current rates. Minor discrepancies can occur due to rounding or recent rate adjustments by the district.</p>
+          </div>
+          <div class="faq-item">
+            <span class="faq-question">Is my data secure?</span>
+            <p>Yes, we use industry-standard encryption to ensure your personal and usage data is protected at all times.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Clear Water Metrics | Sta. Rosa Water District</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu logic
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+  </script>
+</body>
+
+</html>

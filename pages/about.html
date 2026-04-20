@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Clear Water Metrics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <style>
+    .sub-hero {
+      background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('../assets/images/hero-bg.jpg') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .content-section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      margin-bottom: 2rem;
+      color: var(--primary-navy);
+      border-bottom: 2px solid var(--accent-cyan);
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-light);
+    }
+
+    footer {
+      background: var(--primary-navy);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .navbar {
+      background-color: var(--primary-navy);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" id="navbar">
+      <a href="../index.html" class="logo">WaterDistrict</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="updates.html">Updates</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="../login.html" class="btn btn-accent">Login</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero">
+      <div class="container">
+        <h1>About Us</h1>
+        <p>Providing real-time insights into your water consumption.</p>
+      </div>
+    </section>
+
+    <section class="content-section container">
+      <div class="card">
+        <h2 class="section-title">Company Profile</h2>
+        <p>Clear Water Metrics is a dedicated web-based platform tailored specifically for the residents of the Sta. Rosa Water District. Our mission is to bridge the gap between utility providers and households by providing real-time insights into water consumption. By offering accurate estimations and tracking tools, we empower our community to budget effectively and eliminate the stress of "bill shock."</p>
+      </div>
+
+      <div class="card-container">
+        <div class="card">
+          <h2 class="section-title">Water Sources</h2>
+          <p>Our data reflects the supply managed by the Sta. Rosa Water District, which primarily draws from local groundwater reservoirs and certified municipal systems. Clear Water Metrics allows you to monitor exactly how much you are drawing from these local resources, fostering a more mindful approach to our community’s shared water supply.</p>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Privacy Statement</h2>
+          <p>Your trust is our priority. We collect only the essential data required to provide accurate tracking—specifically your account details and meter readings. All information is encrypted and stored securely; we never share your data with third parties without explicit consent. Your information is used solely to enhance your tracking experience and provide bill estimations.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Clear Water Metrics | Sta. Rosa Water District</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu logic
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+  </script>
+</body>
+
+</html>

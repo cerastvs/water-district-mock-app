@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latest Updates | Clear Water Metrics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <style>
+    .sub-hero {
+      background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('../assets/images/hero-bg.jpg') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .content-section {
+      padding: 4rem 0;
+    }
+
+    .update-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-light);
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .update-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .update-date {
+      color: var(--accent-cyan);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .update-message {
+      white-space: pre-wrap;
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
+
+    footer {
+      background: var(--primary-navy);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .navbar {
+      background-color: var(--primary-navy);
+    }
+
+    #updates-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" id="navbar">
+      <a href="../index.html" class="logo">WaterDistrict</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="updates.html">Updates</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="../login.html" class="btn btn-accent">Login</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero">
+      <div class="container">
+        <h1>Latest Updates</h1>
+        <p>Stay informed about water service advisories and system news.</p>
+      </div>
+    </section>
+
+    <section class="content-section container">
+      <div id="updates-container">
+        <div class="loading">Loading latest updates...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Clear Water Metrics | Sta. Rosa Water District</p>
+    </div>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script>
+    // Hamburger menu logic
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+
+    // Load updates
+    async function loadUpdates() {
+      await window.dataReady;
+      const announcements = JSON.parse(localStorage.getItem("announcements") || "[]");
+      const container = document.getElementById("updates-container");
+
+      if (announcements.length === 0) {
+        container.innerHTML = '<div class="loading">No updates available at this time.</div>';
+        return;
+      }
+
+      container.innerHTML = announcements.map(update => `
+        <div class="update-card">
+          <span class="update-date">${update.date}</span>
+          <div class="update-message">${update.message}</div>
+        </div>
+      `).join('');
+    }
+
+    loadUpdates();
+  </script>
+</body>
+
+</html>
