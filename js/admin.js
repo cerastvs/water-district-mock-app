@@ -85,8 +85,66 @@ function initPortalInteractions() {
         });
     }
 
-    // Reset Button logic
     const resetBtn = document.querySelector('.btn-reset');
+    const saveBtn = document.querySelector('.btn-save');
+
+    if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+            const meterNo = searchInput.value.trim();
+            const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+            const userIndex = accounts.findIndex(acc => acc.meterNumber === meterNo);
+
+            if (userIndex === -1) {
+                alert("Please search for a valid consumer first.");
+                return;
+            }
+
+            // Get reading from digits
+            const digits = document.querySelectorAll('.digit-box input');
+            let readingStr = "";
+            digits.forEach(input => {
+                if (input.parentElement.classList.contains('digit-box')) {
+                   readingStr += input.value || "0";
+                }
+            });
+            const newReading = parseInt(readingStr);
+
+            if (isNaN(newReading)) {
+                alert("Please enter a valid meter reading.");
+                return;
+            }
+
+            // Update user's billing record
+            const user = accounts[userIndex];
+            const weeks = user.billing.weeks;
+            let updated = false;
+
+            // Find first week with current reading = 0
+            for (let i = 0; i < weeks.length; i++) {
+                if (weeks[i].current === 0) {
+                    weeks[i].current = newReading;
+                    // Auto-set prev for next week
+                    if (i < weeks.length - 1) {
+                        weeks[i + 1].prev = newReading;
+                    }
+                    updated = true;
+                    break;
+                }
+            }
+
+            if (!updated) {
+                alert("This consumer already has readings for all weeks this month.");
+                return;
+            }
+
+            localStorage.setItem('accounts', JSON.stringify(accounts));
+            alert(`Reading for ${user.name} saved successfully!`);
+            
+            if (resetBtn) resetBtn.click();
+        });
+    }
+
+    // Reset Button logic
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
             // Clear meter digits
@@ -147,7 +205,7 @@ function renderAdminDashboard(accounts) {
 
     // For demo, assume "pending" if any week is 0
     const pendingCount = accounts.filter(acc =>
-        acc.role === 'user' && acc.billing.weeks.some(w => w === 0)
+        acc.role === 'user' && acc.billing.weeks.some(w => w.current === 0)
     ).length;
     const pendingCountElem = document.getElementById('pending-bills-count');
     if (pendingCountElem) pendingCountElem.textContent = pendingCount;
@@ -162,15 +220,20 @@ function renderManageBills(accounts) {
         if (acc.role !== 'user') return;
 
         const total = window.BillingSystem.getTotalBill(acc);
+        const w3 = acc.billing.weeks[2];
+        const w3Usage = window.BillingSystem.calculateUsage(w3);
+        const w3Bill = window.BillingSystem.calculateWeekBill(w3);
+
         html += `
             <tr>
-                <td>${acc.username}</td>
+                <td>${acc.name}</td>
                 <td>${acc.meterNumber}</td>
-                <td>${acc.billing.month}</td>
+                <td>${w3Usage} m³</td>
+                <td>₱ ${w3Bill.toLocaleString()}</td>
                 <td>₱ ${total.toLocaleString()}</td>
                 <td>
                     <button class="btn btn-accent btn-sm" onclick="openEditModal(${index})">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> Edit Readings
                     </button>
                     <button class="btn btn-primary btn-sm" onclick="archiveUserMonth(${index})">
                         <i class="fas fa-archive"></i> Archive
@@ -282,12 +345,24 @@ window.openEditModal = (index) => {
     const accounts = JSON.parse(localStorage.getItem('accounts'));
     const user = accounts[index];
 
-    document.getElementById('edit-username').textContent = user.username;
+    document.getElementById('edit-username').textContent = user.name;
     document.getElementById('edit-user-index').value = index;
-    document.getElementById('week1').value = user.billing.weeks[0];
-    document.getElementById('week2').value = user.billing.weeks[1];
-    document.getElementById('week3').value = user.billing.weeks[2];
-    document.getElementById('week4').value = user.billing.weeks[3];
+    
+    // Fill week 1
+    document.getElementById('w1-prev').value = user.billing.weeks[0].prev;
+    document.getElementById('w1-curr').value = user.billing.weeks[0].current;
+    
+    // Fill week 2
+    document.getElementById('w2-prev').value = user.billing.weeks[1].prev;
+    document.getElementById('w2-curr').value = user.billing.weeks[1].current;
+    
+    // Fill week 3
+    document.getElementById('w3-prev').value = user.billing.weeks[2].prev;
+    document.getElementById('w3-curr').value = user.billing.weeks[2].current;
+    
+    // Fill week 4
+    document.getElementById('w4-prev').value = user.billing.weeks[3].prev;
+    document.getElementById('w4-curr').value = user.billing.weeks[3].current;
 
     document.getElementById('edit-bill-modal').style.display = 'flex';
 };
@@ -300,7 +375,7 @@ window.archiveUserMonth = (index) => {
     if (!nextMonth) return;
 
     if (confirm(`Archive ${user.billing.month} for ${user.username}?`)) {
-        BillingSystem.archiveMonth(user, nextMonth);
+        window.BillingSystem.archiveMonth(user, nextMonth);
         localStorage.setItem('accounts', JSON.stringify(accounts));
         renderManageBills(accounts);
         alert("Month archived successfully!");
@@ -323,15 +398,27 @@ if (editForm) {
         const accounts = JSON.parse(localStorage.getItem('accounts'));
 
         accounts[index].billing.weeks = [
-            parseFloat(document.getElementById('week1').value),
-            parseFloat(document.getElementById('week2').value),
-            parseFloat(document.getElementById('week3').value),
-            parseFloat(document.getElementById('week4').value)
+            { 
+                prev: parseInt(document.getElementById('w1-prev').value), 
+                current: parseInt(document.getElementById('w1-curr').value) 
+            },
+            { 
+                prev: parseInt(document.getElementById('w2-prev').value), 
+                current: parseInt(document.getElementById('w2-curr').value) 
+            },
+            { 
+                prev: parseInt(document.getElementById('w3-prev').value), 
+                current: parseInt(document.getElementById('w3-curr').value) 
+            },
+            { 
+                prev: parseInt(document.getElementById('w4-prev').value), 
+                current: parseInt(document.getElementById('w4-curr').value) 
+            }
         ];
 
         localStorage.setItem('accounts', JSON.stringify(accounts));
         modal.style.display = 'none';
         renderManageBills(accounts);
-        alert("Bill updated successfully!");
+        alert("Meter readings updated and bills recalculated!");
     };
 }

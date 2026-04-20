@@ -79,10 +79,11 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Username</th>
+                                <th>Name</th>
                                 <th>Meter No</th>
-                                <th>Current Month</th>
-                                <th>Total Bill</th>
+                                <th>3rd Week Usage</th>
+                                <th>3rd Week Bill</th>
+                                <th>Total Bill (Month)</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -92,30 +93,62 @@
                     </table>
                 </div>
 
-                <!-- Edit Bill Modal (Simple) -->
+                <!-- Edit Bill Modal (Updated for Meter Readings) -->
                 <div id="edit-bill-modal" class="modal" style="display:none;">
-                    <div class="modal-content card">
-                        <h3>Edit Bill for <span id="edit-username"></span></h3>
+                    <div class="modal-content card" style="max-width: 600px;">
+                        <h3>Update Meter Readings for <span id="edit-username"></span></h3>
                         <form id="edit-bill-form">
                             <input type="hidden" id="edit-user-index">
-                            <div class="form-group">
-                                <label>Week 1 Amount (₱):</label>
-                                <input type="number" id="week1" step="0.01" required>
+                            
+                            <div class="weeks-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="week-section">
+                                    <h4>Week 1</h4>
+                                    <div class="form-group">
+                                        <label>Prev:</label>
+                                        <input type="number" id="w1-prev" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current:</label>
+                                        <input type="number" id="w1-curr" required>
+                                    </div>
+                                </div>
+                                <div class="week-section">
+                                    <h4>Week 2</h4>
+                                    <div class="form-group">
+                                        <label>Prev:</label>
+                                        <input type="number" id="w2-prev" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current:</label>
+                                        <input type="number" id="w2-curr" required>
+                                    </div>
+                                </div>
+                                <div class="week-section">
+                                    <h4>Week 3</h4>
+                                    <div class="form-group">
+                                        <label>Prev:</label>
+                                        <input type="number" id="w3-prev" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current:</label>
+                                        <input type="number" id="w3-curr" required>
+                                    </div>
+                                </div>
+                                <div class="week-section">
+                                    <h4>Week 4</h4>
+                                    <div class="form-group">
+                                        <label>Prev:</label>
+                                        <input type="number" id="w4-prev" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current:</label>
+                                        <input type="number" id="w4-curr" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Week 2 Amount (₱):</label>
-                                <input type="number" id="week2" step="0.01" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Week 3 Amount (₱):</label>
-                                <input type="number" id="week3" step="0.01" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Week 4 Amount (₱):</label>
-                                <input type="number" id="week4" step="0.01" required>
-                            </div>
-                            <div class="modal-actions">
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+
+                            <div class="modal-actions" style="margin-top: 1.5rem;">
+                                <button type="submit" class="btn btn-primary">Save Readings</button>
                                 <button type="button" class="btn btn-accent" id="close-modal">Cancel</button>
                             </div>
                         </form>

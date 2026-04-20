@@ -124,11 +124,7 @@ function renderWeeklyBill(user) {
   // Meter Number
   const meterContainer = document.getElementById("meter-number-boxes");
   if (meterContainer) {
-    // Standardize to 7 chars for the boxes look
-    let meterRaw = user.meterNumber.replace(/[^a-zA-Z0-9]/g, '');
-    if (meterRaw.length < 7) {
-      meterRaw = "800" + meterRaw.padStart(4, '0');
-    }
+    let meterRaw = user.meterNumber;
     let html = '';
     for (let char of meterRaw) {
       html += `<div class="boxed-char">${char}</div>`;
@@ -147,13 +143,18 @@ function renderWeeklyBill(user) {
   if (weeksContainer) {
     const dates = ["Apr 08", "Apr 15", "Apr 23", "Apr 30"];
     let html = '';
-    user.billing.weeks.forEach((amount, index) => {
+    user.billing.weeks.forEach((weekData, index) => {
       const isFinal = index === user.billing.weeks.length - 1;
+      const usage = window.BillingSystem.calculateUsage(weekData);
+      const bill = window.BillingSystem.calculateWeekBill(weekData);
+      
+      const displayValue = usage > 0 || bill > 0 ? `₱${bill.toLocaleString()} (${usage} m³)` : "---";
+
       html += `
         <div class="week-card ${isFinal ? 'final' : ''}">
             <div class="week-card-title">WEEK ${index + 1}${isFinal ? ' (Final)' : ''}</div>
             <div class="week-card-date">${dates[index] || 'TBD'}</div>
-            <input type="text" class="week-card-input" value="${amount.toFixed(2)}" readonly>
+            <input type="text" class="week-card-input" value="${displayValue}" readonly>
         </div>
       `;
     });
@@ -192,7 +193,7 @@ function renderHistory(user) {
                 <tr>
                     <td>${item.month}</td>
                     <td>Water Bill Payment</td>
-                    <td>₱ ${item.total.toFixed(2)}</td>
+                    <td>₱ ${item.total.toLocaleString()}</td>
                     <td><span class="status-paid">Paid</span></td>
                 </tr>
             `;
@@ -228,13 +229,13 @@ function renderUsageComparison(user) {
             <div class="comparison-card">
                 <div class="stat">
                     <span>This Month (${user.billing.month}):</span>
-                    <strong>₱ ${currentTotal.toFixed(2)}</strong>
+                    <strong>₱ ${currentTotal.toLocaleString()}</strong>
                 </div>
                 ${previousTotal
         ? `
                 <div class="stat">
                     <span>Last Month (${user.history[0].month}):</span>
-                    <strong>₱ ${previousTotal.toFixed(2)}</strong>
+                    <strong>₱ ${previousTotal.toLocaleString()}</strong>
                 </div>
                 `
         : ""
