@@ -373,6 +373,26 @@ td {
   font-size: 0.95rem;
 }
 
+.billing-notice {
+  background-color: #FFFBEB;
+  border: 1px solid #FEF3C7;
+  border-left: 4px solid #F59E0B;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #92400E;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.billing-notice i {
+  font-size: 1.25rem;
+  color: #F59E0B;
+}
+
 /* Weekly Water Challenge Styles */
 .water-challenge-card {
   background-color: #fff;
