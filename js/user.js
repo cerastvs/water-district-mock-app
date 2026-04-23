@@ -145,13 +145,15 @@ function renderWeeklyBill(user) {
     let html = '';
     user.billing.weeks.forEach((weekData, index) => {
       const isFinal = index === user.billing.weeks.length - 1;
+      const isWeek3 = index === 2;
       const usage = window.BillingSystem.calculateUsage(weekData);
       const bill = window.BillingSystem.calculateWeekBill(weekData);
       
       const displayValue = usage > 0 || bill > 0 ? `₱${bill.toLocaleString()} (${usage} m³)` : "---";
 
       html += `
-        <div class="week-card ${isFinal ? 'final' : ''}">
+        <div class="week-card ${isFinal ? 'final' : ''} ${isWeek3 ? 'highlighted' : ''}" 
+             ${isWeek3 ? 'onclick="openReadingModal(2)"' : ''}>
             <div class="week-card-title">WEEK ${index + 1}${isFinal ? ' (Final)' : ''}</div>
             <div class="week-card-date">${dates[index] || 'TBD'}</div>
             <input type="text" class="week-card-input" value="${displayValue}" readonly>
@@ -460,3 +462,79 @@ function renderGoals(user) {
     renderWeek(1);
   }
 }
+
+// Modal Logic for Updating Reading
+window.openReadingModal = (weekIndex) => {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  if (!user || !user.billing || !user.billing.weeks) return;
+
+  const weekData = user.billing.weeks[weekIndex];
+  const modal = document.getElementById("update-reading-modal");
+  const prevReadingLabel = document.getElementById("modal-prev-reading");
+  const input = document.getElementById("current-reading-input");
+
+  if (modal && prevReadingLabel && input) {
+    prevReadingLabel.textContent = weekData.prev;
+    input.value = weekData.current || "";
+    modal.classList.remove("hidden");
+    
+    // Store index for saving
+    modal.setAttribute("data-week-index", weekIndex);
+  }
+};
+
+window.closeReadingModal = () => {
+  const modal = document.getElementById("update-reading-modal");
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+};
+
+window.saveReading = () => {
+  const modal = document.getElementById("update-reading-modal");
+  const input = document.getElementById("current-reading-input");
+  const weekIndex = parseInt(modal.getAttribute("data-week-index"));
+  
+  const newValue = parseFloat(input.value);
+  if (isNaN(newValue)) {
+    alert("Please enter a valid number for the reading.");
+    return;
+  }
+
+  let user = JSON.parse(localStorage.getItem("currentUser"));
+  const prevValue = user.billing.weeks[weekIndex].prev;
+
+  if (newValue < prevValue) {
+    alert("Current reading cannot be less than the previous reading (" + prevValue + ").");
+    return;
+  }
+
+  // Update Week 3 current reading
+  user.billing.weeks[weekIndex].current = newValue;
+
+  // Update Week 4 previous reading (linked)
+  if (user.billing.weeks[weekIndex + 1]) {
+    user.billing.weeks[weekIndex + 1].prev = newValue;
+  }
+
+  // Save to localStorage (currentUser)
+  localStorage.setItem("currentUser", JSON.stringify(user));
+
+  // Save to localStorage (accounts database)
+  const accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+  const accountIndex = accounts.findIndex(acc => acc.username === user.username);
+  if (accountIndex !== -1) {
+    // Keep password during update
+    const password = accounts[accountIndex].password;
+    accounts[accountIndex] = { ...user, password };
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+  }
+
+  // Refresh page content
+  renderWeeklyBill(user);
+  closeReadingModal();
+  
+  // Also refresh other parts if needed
+  const dashboardTotal = document.getElementById('dashboard-total');
+  if (dashboardTotal) renderDashboard(user);
+};

@@ -19,7 +19,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 1700, current: 1705 },
+        { prev: 1700, current: 0 },
         { prev: 1705, current: 0 }
       ]
     },
@@ -38,7 +38,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 3543, current: 3546 },
+        { prev: 3543, current: 0 },
         { prev: 3546, current: 0 }
       ]
     },
@@ -57,7 +57,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 620, current: 621 },
+        { prev: 620, current: 0 },
         { prev: 621, current: 0 }
       ]
     },
@@ -76,7 +76,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 458, current: 466 },
+        { prev: 458, current: 0 },
         { prev: 466, current: 0 }
       ]
     },
@@ -95,7 +95,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 603, current: 604 },
+        { prev: 603, current: 0 },
         { prev: 604, current: 0 }
       ]
     },
@@ -114,7 +114,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 419, current: 419 },
+        { prev: 419, current: 0 },
         { prev: 419, current: 0 }
       ]
     },
@@ -133,7 +133,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 1908, current: 1913 },
+        { prev: 1908, current: 0 },
         { prev: 1913, current: 0 }
       ]
     },
@@ -152,7 +152,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 853, current: 855 },
+        { prev: 853, current: 0 },
         { prev: 855, current: 0 }
       ]
     },
@@ -171,7 +171,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 2900, current: 2906 },
+        { prev: 2900, current: 0 },
         { prev: 2906, current: 0 }
       ]
     },
@@ -190,7 +190,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 871, current: 877 },
+        { prev: 871, current: 0 },
         { prev: 877, current: 0 }
       ]
     },
@@ -209,7 +209,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 2079, current: 2082 },
+        { prev: 2079, current: 0 },
         { prev: 2082, current: 0 }
       ]
     },
@@ -228,7 +228,7 @@ const initialUsersFallback = [
       weeks: [
         { prev: 0, current: 0 },
         { prev: 0, current: 0 },
-        { prev: 528, current: 531 },
+        { prev: 528, current: 0 },
         { prev: 531, current: 0 }
       ]
     },
