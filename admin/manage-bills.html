@@ -1,166 +1,235 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manage Bills - Admin</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div><i class="fas fa-tint" style="color: #60A5FA; font-size: 28px;"></i></div>
-                <div>
-                    <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2;">SRNE Water<br><span
-                            style="font-size: 0.6rem; color: #94A3B8; font-weight: 600; letter-spacing: 0.5px;">ADMIN
-                            PORTAL</span></h2>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div>
+            <i class="fas fa-tint" style="color: #60a5fa; font-size: 28px"></i>
+          </div>
+          <div>
+            <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2">
+              SRNE Water<br /><span
+                style="
+                  font-size: 0.6rem;
+                  color: #94a3b8;
+                  font-weight: 600;
+                  letter-spacing: 0.5px;
+                "
+                >ADMIN PORTAL</span
+              >
+            </h2>
+          </div>
+        </div>
+
+        <div class="sidebar-section">MAIN MENU</div>
+        <nav class="sidebar-menu">
+          <a href="dashboard.html">
+            <i class="fas fa-chart-line"></i> Overview
+          </a>
+          <a href="manage-bills.html" class="active">
+            <i class="fas fa-file-invoice-dollar"></i> Manage Bills
+          </a>
+          <a href="announcements.html">
+            <i class="fas fa-bullhorn"></i> Announcements
+          </a>
+        </nav>
+
+        <div
+          style="
+            margin-top: auto;
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-left: -1rem;
+            margin-right: -1rem;
+            padding-left: 2rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              justify-content: space-between;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 12px">
+              <div
+                style="
+                  width: 36px;
+                  height: 36px;
+                  background-color: #3b82f6;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: bold;
+                "
+              >
+                A
+              </div>
+              <div>
+                <div
+                  style="font-size: 0.85rem; font-weight: 600; color: white"
+                  id="sidebar-adminname"
+                >
+                  Admin
                 </div>
+                <a
+                  href="../login.html"
+                  class="logout-link"
+                  style="
+                    font-size: 0.75rem;
+                    color: #94a3b8;
+                    text-decoration: none;
+                    display: block;
+                    margin-top: 2px;
+                  "
+                  >Sign Out</a
+                >
+              </div>
             </div>
+            <i
+              class="fas fa-sign-out-alt"
+              onclick="window.location.href = '../login.html'"
+              style="
+                color: #94a3b8;
+                font-size: 1rem;
+                cursor: pointer;
+                padding-right: 1rem;
+              "
+            ></i>
+          </div>
+        </div>
+      </aside>
 
-            <div class="sidebar-section">MAIN MENU</div>
-            <nav class="sidebar-menu">
-                <a href="dashboard.html">
-                    <i class="fas fa-chart-line"></i> Overview
-                </a>
-                <a href="manage-bills.html" class="active">
-                    <i class="fas fa-file-invoice-dollar"></i> Manage Bills
-                </a>
-                <a href="manage-users.html">
-                    <i class="fas fa-users"></i> Manage Users
-                </a>
-                <a href="announcements.html">
-                    <i class="fas fa-bullhorn"></i> Announcements
-                </a>
-            </nav>
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="top-bar">
+          <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+          <div class="user-info">
+            <span>Admin Panel | <strong id="admin-name">Admin</strong></span>
+          </div>
+        </header>
 
-            <div
-                style="margin-top: auto; padding: 1rem; border-top: 1px solid rgba(255,255,255,0.05); margin-left: -1rem; margin-right: -1rem; padding-left: 2rem;">
-                <div style="display: flex; align-items: center; gap: 12px; justify-content: space-between;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div
-                            style="width: 36px; height: 36px; background-color: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                            A</div>
-                        <div>
-                            <div style="font-size: 0.85rem; font-weight: 600; color: white;" id="sidebar-adminname">
-                                Admin</div>
-                            <a href="../login.html" class="logout-link"
-                                style="font-size: 0.75rem; color: #94A3B8; text-decoration: none; display: block; margin-top: 2px;">Sign
-                                Out</a>
-                        </div>
+        <section class="dashboard-content">
+          <h1>Manage User Bills</h1>
+          <div class="card">
+            <h3>User List</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Meter No</th>
+                  <th>3rd Week Usage</th>
+                  <th>3rd Week Bill</th>
+                  <th>Total Bill (Month)</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="user-bills-table">
+                <!-- Users will be listed here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Edit Bill Modal (Updated for Meter Readings) -->
+          <div id="edit-bill-modal" class="modal" style="display: none">
+            <div class="modal-content card" style="max-width: 600px">
+              <h3>
+                Update Meter Readings for <span id="edit-username"></span>
+              </h3>
+              <form id="edit-bill-form">
+                <input type="hidden" id="edit-user-index" />
+
+                <div
+                  class="weeks-grid"
+                  style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                  "
+                >
+                  <div class="week-section">
+                    <h4>Week 1</h4>
+                    <div class="form-group">
+                      <label>Prev:</label>
+                      <input type="number" id="w1-prev" required />
                     </div>
-                    <i class="fas fa-sign-out-alt" onclick="window.location.href='../login.html'"
-                        style="color: #94A3B8; font-size: 1rem; cursor: pointer; padding-right: 1rem;"></i>
+                    <div class="form-group">
+                      <label>Current:</label>
+                      <input type="number" id="w1-curr" required />
+                    </div>
+                  </div>
+                  <div class="week-section">
+                    <h4>Week 2</h4>
+                    <div class="form-group">
+                      <label>Prev:</label>
+                      <input type="number" id="w2-prev" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Current:</label>
+                      <input type="number" id="w2-curr" required />
+                    </div>
+                  </div>
+                  <div class="week-section">
+                    <h4>Week 3</h4>
+                    <div class="form-group">
+                      <label>Prev:</label>
+                      <input type="number" id="w3-prev" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Current:</label>
+                      <input type="number" id="w3-curr" required />
+                    </div>
+                  </div>
+                  <div class="week-section">
+                    <h4>Week 4</h4>
+                    <div class="form-group">
+                      <label>Prev:</label>
+                      <input type="number" id="w4-prev" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Current:</label>
+                      <input type="number" id="w4-curr" required />
+                    </div>
+                  </div>
                 </div>
+
+                <div class="modal-actions" style="margin-top: 1.5rem">
+                  <button type="submit" class="btn btn-primary">
+                    Save Readings
+                  </button>
+                  <button type="button" class="btn btn-accent" id="close-modal">
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-bar">
-                <div class="menu-toggle" id="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="user-info">
-                    <span>Admin Panel | <strong id="admin-name">Admin</strong></span>
-                </div>
-            </header>
-
-            <section class="dashboard-content">
-                <h1>Manage User Bills</h1>
-                <div class="card">
-                    <h3>User List</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Meter No</th>
-                                <th>3rd Week Usage</th>
-                                <th>3rd Week Bill</th>
-                                <th>Total Bill (Month)</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="user-bills-table">
-                            <!-- Users will be listed here -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Edit Bill Modal (Updated for Meter Readings) -->
-                <div id="edit-bill-modal" class="modal" style="display:none;">
-                    <div class="modal-content card" style="max-width: 600px;">
-                        <h3>Update Meter Readings for <span id="edit-username"></span></h3>
-                        <form id="edit-bill-form">
-                            <input type="hidden" id="edit-user-index">
-                            
-                            <div class="weeks-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div class="week-section">
-                                    <h4>Week 1</h4>
-                                    <div class="form-group">
-                                        <label>Prev:</label>
-                                        <input type="number" id="w1-prev" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Current:</label>
-                                        <input type="number" id="w1-curr" required>
-                                    </div>
-                                </div>
-                                <div class="week-section">
-                                    <h4>Week 2</h4>
-                                    <div class="form-group">
-                                        <label>Prev:</label>
-                                        <input type="number" id="w2-prev" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Current:</label>
-                                        <input type="number" id="w2-curr" required>
-                                    </div>
-                                </div>
-                                <div class="week-section">
-                                    <h4>Week 3</h4>
-                                    <div class="form-group">
-                                        <label>Prev:</label>
-                                        <input type="number" id="w3-prev" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Current:</label>
-                                        <input type="number" id="w3-curr" required>
-                                    </div>
-                                </div>
-                                <div class="week-section">
-                                    <h4>Week 4</h4>
-                                    <div class="form-group">
-                                        <label>Prev:</label>
-                                        <input type="number" id="w4-prev" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Current:</label>
-                                        <input type="number" id="w4-curr" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-actions" style="margin-top: 1.5rem;">
-                                <button type="submit" class="btn btn-primary">Save Readings</button>
-                                <button type="button" class="btn btn-accent" id="close-modal">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </main>
+          </div>
+        </section>
+      </main>
     </div>
 
     <script src="../js/data.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/admin.js"></script>
-</body>
-
+  </body>
 </html>

@@ -23,7 +23,7 @@ const initialUsersFallback = [
         { prev: 1705, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 540 }]
   },
   {
     username: "rosita",
@@ -42,7 +42,7 @@ const initialUsersFallback = [
         { prev: 3546, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 420 }]
   },
   {
     username: "estrelita",
@@ -61,7 +61,7 @@ const initialUsersFallback = [
         { prev: 621, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 610 }]
   },
   {
     username: "gundina",
@@ -80,7 +80,7 @@ const initialUsersFallback = [
         { prev: 466, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 780 }]
   },
   {
     username: "jorel",
@@ -99,7 +99,7 @@ const initialUsersFallback = [
         { prev: 604, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 450 }]
   },
   {
     username: "luisa",
@@ -118,7 +118,7 @@ const initialUsersFallback = [
         { prev: 419, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 520 }]
   },
   {
     username: "frederick",
@@ -137,7 +137,7 @@ const initialUsersFallback = [
         { prev: 1913, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 670 }]
   },
   {
     username: "candido",
@@ -156,7 +156,7 @@ const initialUsersFallback = [
         { prev: 855, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 490 }]
   },
   {
     username: "nerissa",
@@ -175,7 +175,7 @@ const initialUsersFallback = [
         { prev: 2906, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 720 }]
   },
   {
     username: "ligaya",
@@ -194,7 +194,7 @@ const initialUsersFallback = [
         { prev: 877, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 580 }]
   },
   {
     username: "edgardo",
@@ -213,7 +213,7 @@ const initialUsersFallback = [
         { prev: 2082, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 630 }]
   },
   {
     username: "med",
@@ -232,7 +232,7 @@ const initialUsersFallback = [
         { prev: 531, current: 0 }
       ]
     },
-    history: []
+    history: [{ month: "March", total: 470 }]
   }
 ];
 
@@ -304,6 +304,14 @@ window.BillingSystem = {
 async function initializeAppData() {
   const accounts = localStorage.getItem("accounts");
   const announcements = localStorage.getItem("announcements");
+
+  // Force update if accounts exists but lacks history (for testing purposes)
+  if (accounts) {
+    const parsedAccounts = JSON.parse(accounts);
+    if (parsedAccounts.length > 0 && parsedAccounts[1] && (!parsedAccounts[1].history || parsedAccounts[1].history.length === 0)) {
+       localStorage.setItem("accounts", JSON.stringify(initialUsersFallback));
+    }
+  }
 
   if (!accounts || accounts === '[]') {
     localStorage.setItem("accounts", JSON.stringify(initialUsersFallback));
