@@ -1,275 +1,359 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weekly Bill - Water District</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div><i class="fas fa-tint" style="color: #60A5FA; font-size: 28px;"></i></div>
-                <div>
-                    <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2;">SRNE Water<br><span
-                            style="font-size: 0.6rem; color: #94A3B8; font-weight: 600; letter-spacing: 0.5px;">DISTRICT
-                            PORTAL</span></h2>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div>
+            <i class="fas fa-tint" style="color: #60a5fa; font-size: 28px"></i>
+          </div>
+          <div>
+            <h2 class="logo" style="font-size: 1.1rem; line-height: 1.2">
+              SRNE Water<br /><span
+                style="
+                  font-size: 0.6rem;
+                  color: #94a3b8;
+                  font-weight: 600;
+                  letter-spacing: 0.5px;
+                "
+                >DISTRICT PORTAL</span
+              >
+            </h2>
+          </div>
+        </div>
+
+        <div class="sidebar-section">MAIN MENU</div>
+        <nav class="sidebar-menu">
+          <a href="dashboard.html"> <i class="fas fa-home"></i> Dashboard </a>
+          <a href="weekly-bill.html" class="active">
+            <i class="fas fa-calendar-alt"></i> Weekly Bill
+          </a>
+          <a href="history.html"> <i class="fas fa-history"></i> History </a>
+          <a href="announcements.html">
+            <i class="fas fa-bell"></i> Notifications
+          </a>
+        </nav>
+
+        <div class="sidebar-section">UTILITIES</div>
+        <nav class="sidebar-menu">
+          <a href="usage.html">
+            <i class="fas fa-chart-line"></i> Usage Comparison
+          </a>
+          <a href="goals.html">
+            <i class="fas fa-bullseye"></i> Goal Setting
+          </a>
+          <a href="mindful.html">
+            <i class="fas fa-lightbulb"></i> Mindful Consumption
+          </a>
+        </nav>
+
+        <div
+          style="
+            margin-top: auto;
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-left: -1rem;
+            margin-right: -1rem;
+            padding-left: 2rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              justify-content: space-between;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 12px">
+              <div
+                style="
+                  width: 36px;
+                  height: 36px;
+                  background-color: #3b82f6;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: bold;
+                "
+              >
+                U
+              </div>
+              <div>
+                <div
+                  style="font-size: 0.85rem; font-weight: 600; color: white"
+                  id="sidebar-username"
+                >
+                  User
                 </div>
+                <a
+                  href="../login.html"
+                  class="logout-link"
+                  style="
+                    font-size: 0.75rem;
+                    color: #94a3b8;
+                    text-decoration: none;
+                    display: block;
+                    margin-top: 2px;
+                  "
+                  >Sign Out</a
+                >
+              </div>
+            </div>
+            <i
+              class="fas fa-sign-out-alt"
+              onclick="window.location.href = '../login.html'"
+              style="
+                color: #94a3b8;
+                font-size: 1rem;
+                cursor: pointer;
+                padding-right: 1rem;
+              "
+            ></i>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="page-header card">
+          <h1 class="header-title">SANTA ROSA NUEVA ECIJA WATER DISTRICT</h1>
+          <p class="header-subtitle">Account Management & Payment Portal</p>
+        </header>
+
+        <section class="dashboard-content">
+          <div class="top-cards-row">
+            <div class="card info-card">
+              <h3>CURRENT BILL AMOUNT</h3>
+              <div class="boxed-value-container" id="current-bill-boxes">
+                <!-- JS generates boxes here -->
+              </div>
+              <p class="card-hint">
+                <i class="fas fa-info-circle"></i> Outstanding balance as of
+                today.
+              </p>
             </div>
 
-            <div class="sidebar-section">MAIN MENU</div>
-            <nav class="sidebar-menu">
-                <a href="dashboard.html">
-                    <i class="fas fa-home"></i> Dashboard
-                </a>
-                <a href="weekly-bill.html" class="active">
-                    <i class="fas fa-calendar-alt"></i> Weekly Bill
-                </a>
-                <a href="history.html">
-                    <i class="fas fa-history"></i> History
-                </a>
-                <a href="announcements.html">
-                    <i class="fas fa-bell"></i> Notifications
-                </a>
-            </nav>
-
-            <div class="sidebar-section">UTILITIES</div>
-            <nav class="sidebar-menu">
-                <a href="usage.html">
-                    <i class="fas fa-chart-line"></i> Usage Comparison
-                </a>
-                <a href="goals.html">
-                    <i class="fas fa-bullseye"></i> Goal Setting
-                </a>
-                <a href="mindful.html">
-                    <i class="fas fa-lightbulb"></i> Mindful Consumption
-                </a>
-            </nav>
-
-            <div
-                style="margin-top: auto; padding: 1rem; border-top: 1px solid rgba(255,255,255,0.05); margin-left: -1rem; margin-right: -1rem; padding-left: 2rem;">
-                <div style="display: flex; align-items: center; gap: 12px; justify-content: space-between;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div
-                            style="width: 36px; height: 36px; background-color: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                            U</div>
-                        <div>
-                            <div style="font-size: 0.85rem; font-weight: 600; color: white;" id="sidebar-username">User
-                            </div>
-                            <a href="../login.html" class="logout-link"
-                                style="font-size: 0.75rem; color: #94A3B8; text-decoration: none; display: block; margin-top: 2px;">Sign
-                                Out</a>
-                        </div>
-                    </div>
-                    <i class="fas fa-sign-out-alt" onclick="window.location.href='../login.html'"
-                        style="color: #94A3B8; font-size: 1rem; cursor: pointer; padding-right: 1rem;"></i>
-                </div>
+            <div class="card info-card">
+              <h3>METER NUMBER</h3>
+              <div
+                class="boxed-value-container boxed-value-meter"
+                id="meter-number-boxes"
+              >
+                <!-- JS generates boxes here -->
+              </div>
+              <p class="card-hint">
+                <i class="fas fa-info-circle"></i> Unique Identifier for your
+                water meter.
+              </p>
             </div>
-        </aside>
+          </div>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="page-header card">
-                <h1 class="header-title">SANTA ROSA NUEVA ECIJA WATER DISTRICT</h1>
-                <p class="header-subtitle">Account Management & Payment Portal</p>
-            </header>
+          <div class="card consumption-breakdown">
+            <h3 id="consumption-header-month">CONSUMPTION BREAKDOWN</h3>
+            <div class="weeks-row" id="weeks-container">
+              <!-- JS generates 4 weeks here -->
+            </div>
+          </div>
 
-            <section class="dashboard-content">
-                <div class="top-cards-row">
-                    <div class="card info-card">
-                        <h3>CURRENT BILL AMOUNT</h3>
-                        <div class="boxed-value-container" id="current-bill-boxes">
-                            <!-- JS generates boxes here -->
-                        </div>
-                        <p class="card-hint"><i class="fas fa-info-circle"></i> Outstanding balance as of today.</p>
-                    </div>
+          <div class="billing-notice">
+            <i class="fas fa-info-circle"></i>
+            <p>
+              NOTE: A 2% franchise tax and a 20-peso meter fee apply in the
+              fourth week of each month
+            </p>
+          </div>
 
-                    <div class="card info-card">
-                        <h3>METER NUMBER</h3>
-                        <div class="boxed-value-container boxed-value-meter" id="meter-number-boxes">
-                            <!-- JS generates boxes here -->
-                        </div>
-                        <p class="card-hint"><i class="fas fa-info-circle"></i> Unique Identifier for your water meter.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card consumption-breakdown">
-                    <h3 id="consumption-header-month">CONSUMPTION BREAKDOWN</h3>
-                    <div class="weeks-row" id="weeks-container">
-                        <!-- JS generates 4 weeks here -->
-                    </div>
-                </div>
-
-                <div class="billing-notice">
-                    <i class="fas fa-info-circle"></i>
-                    <p>A 2% franchise tax and a 20-peso meter fee apply in the fourth week of each month.</p>
-                </div>
-
-                <div class="deadline-banner" id="deadline-banner">
-                    <!-- JS generates the banner logic here -->
-                </div>
-            </section>
-        </main>
+          <div class="deadline-banner" id="deadline-banner">
+            <!-- JS generates the banner logic here -->
+          </div>
+        </section>
+      </main>
     </div>
 
     <!-- Update Reading Modal -->
     <div id="update-reading-modal" class="modal hidden">
-        <div class="modal-content card">
-            <div class="modal-header">
-                <h2>Update Week 3 Reading</h2>
-                <button class="close-btn" onclick="closeReadingModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="reading-info">
-                    <p>Previous Reading: <strong id="modal-prev-reading">0</strong> m³</p>
-                </div>
-                <div class="form-group">
-                    <label for="current-reading-input">Current Reading (m³):</label>
-                    <input type="number" id="current-reading-input" placeholder="Enter meter reading..." step="1">
-                </div>
-                <p class="modal-hint">Note: New reading must be greater than or equal to the previous reading.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeReadingModal()">Cancel</button>
-                <button class="btn-primary" onclick="saveReading()">Update Reading</button>
-            </div>
+      <div class="modal-content card">
+        <div class="modal-header">
+          <h2>Update Week 3 Reading</h2>
+          <button class="close-btn" onclick="closeReadingModal()">
+            &times;
+          </button>
         </div>
+        <div class="modal-body">
+          <div class="reading-info">
+            <p>
+              Previous Reading: <strong id="modal-prev-reading">0</strong> m³
+            </p>
+          </div>
+          <div class="form-group">
+            <label for="current-reading-input">Current Reading (m³):</label>
+            <input
+              type="number"
+              id="current-reading-input"
+              placeholder="Enter meter reading..."
+              step="1"
+            />
+          </div>
+          <p class="modal-hint">
+            Note: New reading must be greater than or equal to the previous
+            reading.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="closeReadingModal()">
+            Cancel
+          </button>
+          <button class="btn-primary" onclick="saveReading()">
+            Update Reading
+          </button>
+        </div>
+      </div>
     </div>
 
     <style>
-        /* Week Card Highlighting */
-        .week-card.highlighted {
-            border: 2px solid #3B82F6;
-            background-color: rgba(59, 130, 246, 0.05);
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-        }
-        .week-card.highlighted:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-        .week-card.highlighted::after {
-            content: 'CLICK TO UPDATE';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.6rem;
-            color: #3B82F6;
-            font-weight: 700;
-            white-space: nowrap;
-        }
+      /* Week Card Highlighting */
+      .week-card.highlighted {
+        border: 2px solid #3b82f6;
+        background-color: rgba(59, 130, 246, 0.05);
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+      }
+      .week-card.highlighted:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        background-color: rgba(59, 130, 246, 0.1);
+      }
+      .week-card.highlighted::after {
+        content: "CLICK TO UPDATE";
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.6rem;
+        color: #3b82f6;
+        font-weight: 700;
+        white-space: nowrap;
+      }
 
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-        .modal.hidden {
-            display: none;
-            opacity: 0;
-        }
-        .modal-content {
-            width: 90%;
-            max-width: 400px;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .modal-header h2 {
-            margin: 0;
-            font-size: 1.25rem;
-            color: #1E293B;
-        }
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #64748B;
-        }
-        .reading-info {
-            background: #F8FAFC;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border: 1px solid #E2E8F0;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #334155;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #CBD5E1;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        .modal-hint {
-            font-size: 0.75rem;
-            color: #64748B;
-            margin-bottom: 1.5rem;
-        }
-        .modal-footer {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
-        .btn-primary {
-            background-color: #3B82F6;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .btn-secondary {
-            background-color: white;
-            color: #64748B;
-            border: 1px solid #E2E8F0;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-        }
+      /* Modal Styles */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+      .modal.hidden {
+        display: none;
+        opacity: 0;
+      }
+      .modal-content {
+        width: 90%;
+        max-width: 400px;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+      .modal-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        color: #1e293b;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #64748b;
+      }
+      .reading-info {
+        background: #f8fafc;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border: 1px solid #e2e8f0;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #334155;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+      .modal-hint {
+        font-size: 0.75rem;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+      }
+      .modal-footer {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+      }
+      .btn-primary {
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn-secondary {
+        background-color: white;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+      }
     </style>
 
     <script src="../js/main.js"></script>
     <script src="../js/data.js"></script>
     <script src="../js/user.js"></script>
-</body>
-
+  </body>
 </html>

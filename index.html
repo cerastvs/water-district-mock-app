@@ -1,60 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Water District System | Home</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRNE Water District | Official Portal</title>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
     <header>
-      <nav class="navbar" id="navbar">
-        <a href="index.html" class="logo">WaterDistrict</a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="pages/about.html">About</a></li>
-          <li><a href="pages/services.html">Services</a></li>
-          <li><a href="pages/updates.html">Updates</a></li>
-          <li><a href="pages/contact.html">Contact Us</a></li>
-          <li><a href="login.html" class="btn btn-accent">Login</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
+        <nav class="navbar" id="navbar">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-tint"></i> SRNE Water
+                </a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="pages/about.html">About</a></li>
+                    <li><a href="pages/services.html">Services</a></li>
+                    <li><a href="pages/updates.html">Updates</a></li>
+                    <li><a href="pages/contact.html">Contact Us</a></li>
+                    <li><a href="login.html" class="btn btn-accent" style="margin-left: 1rem;">Login Portal</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="text-center">
-          <h1>Pure Water, Reliable Service</h1>
-          <p>Managing your water usage and bills has never been easier.</p>
-          <a href="login.html" class="btn btn-primary">Get Started</a>
-        </div>
-      </section>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Pure Water for a Brighter Future</h1>
+                <p>Reliable water services for the community of Santa Rosa, Nueva Ecija. Access your bills, monitor usage, and manage your account online.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="login.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1rem;">
+                        Client Portal <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                    <a href="pages/services.html" class="btn btn-accent" style="padding: 1rem 2rem; font-size: 1rem; border-color: white; color: white;">
+                        Our Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Modern Solutions for Our Community</h2>
+                    <p>We've upgraded our systems to provide you with a faster, more transparent, and more reliable service experience.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <h3>Online Billing</h3>
+                        <p>View and settle your water bills from the comfort of your home with our secure portal.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Usage Tracking</h3>
+                        <p>Monitor your weekly consumption and set goals to save water and reduce your monthly costs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-bullhorn"></i></div>
+                        <h3>Service Updates</h3>
+                        <p>Stay informed about maintenance schedules, flushing activities, and system advisories.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color: white; font-weight: 800; font-size: 1.25rem;">SRNE Water</h4>
+                <p style="color: #94A3B8; margin-top: 1rem;">Providing clean and safe water since 1995. Committed to serving the people of Santa Rosa, Nueva Ecija.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="pages/about.html">About Us</a></li>
+                    <li><a href="pages/services.html">Services</a></li>
+                    <li><a href="pages/updates.html">Updates</a></li>
+                    <li><a href="login.html">Login Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul class="footer-links" style="color: #94A3B8;">
+                    <li style="display: flex; gap: 10px; align-items: flex-start;">
+                        <i class="fas fa-map-marker-alt" style="margin-top: 4px; color: var(--accent-cyan);"></i>
+                        <span>Santa Rosa, Nueva Ecija, Philippines</span>
+                    </li>
+                    <li style="display: flex; gap: 10px; align-items: center;">
+                        <i class="fas fa-phone" style="color: var(--accent-cyan);"></i>
+                        <span>(044) 123-4567</span>
+                    </li>
+                    <li style="display: flex; gap: 10px; align-items: center;">
+                        <i class="fas fa-envelope" style="color: var(--accent-cyan);"></i>
+                        <span>contact@srnewater.gov.ph</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Santa Rosa Nueva Ecija Water District. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
     <script>
-      const hamburger = document.getElementById("hamburger");
-      const navLinks = document.getElementById("nav-links");
-      const navbar = document.getElementById("navbar");
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+        const navbar = document.getElementById("navbar");
 
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        hamburger.classList.toggle("active");
-      });
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
 
-      // Navbar scroll effect
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
-      });
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+                navbar.style.padding = "0.75rem 2rem";
+            } else {
+                navbar.classList.remove("scrolled");
+                navbar.style.padding = "1rem 2rem";
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
