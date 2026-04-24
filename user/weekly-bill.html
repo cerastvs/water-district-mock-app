@@ -175,8 +175,8 @@
           <div class="billing-notice">
             <i class="fas fa-info-circle"></i>
             <p>
-              NOTE: A 2% franchise tax and a 20-peso meter fee apply in the
-              fourth week of each month
+              A 2% franchise tax and a 20-peso meter fee apply in the fourth
+              week of each month.
             </p>
           </div>
 
@@ -189,40 +189,47 @@
 
     <!-- Update Reading Modal -->
     <div id="update-reading-modal" class="modal hidden">
-      <div class="modal-content card">
-        <div class="modal-header">
+      <div class="modal-backdrop">
+        <div class="modal-header-new">
           <h2>Update Week 3 Reading</h2>
-          <button class="close-btn" onclick="closeReadingModal()">
-            &times;
-          </button>
+          <div class="prev-reading-badge">
+            <i class="fas fa-history"></i>
+            <span>Previous: <strong id="modal-prev-reading">0</strong> m³</span>
+          </div>
         </div>
-        <div class="modal-body">
-          <div class="reading-info">
-            <p>
-              Previous Reading: <strong id="modal-prev-reading">0</strong> m³
-            </p>
+
+        <div class="meter-visual-box">
+          <span class="meter-label">Your Meter Example</span>
+          <div class="meter-display">
+            <span class="digit-grey">0120</span><span class="highlight-box">0528</span>
           </div>
-          <div class="form-group">
-            <label for="current-reading-input">Current Reading (m³):</label>
-            <input
-              type="number"
-              id="current-reading-input"
-              placeholder="Enter meter reading..."
-              step="1"
-            />
+          <div class="arrow-indicator">
+            <i class="fas fa-caret-up"></i>
           </div>
-          <p class="modal-hint">
-            Note: New reading must be greater than or equal to the previous
-            reading.
+          <p style="font-size: 0.75rem; margin-top: 15px; color: #94a3b8; margin-bottom: 0;">
+            Enter only the <span style="color: #3b82f6; font-weight: bold;">blue boxed</span> digits
           </p>
         </div>
-        <div class="modal-footer">
-          <button class="btn-secondary" onclick="closeReadingModal()">
-            Cancel
-          </button>
-          <button class="btn-primary" onclick="saveReading()">
-            Update Reading
-          </button>
+
+        <div class="form-section">
+          <label class="input-label">Enter last 4 digits of your meter</label>
+          <span class="helper-text">Do not enter the full meter reading</span>
+
+          <div class="meter-input-container">
+            <input type="text" maxlength="1" class="digit-input" placeholder="0" oninput="if(this.value) this.nextElementSibling?.focus()">
+            <input type="text" maxlength="1" class="digit-input" placeholder="0" oninput="if(this.value) this.nextElementSibling?.focus()">
+            <input type="text" maxlength="1" class="digit-input" placeholder="0" oninput="if(this.value) this.nextElementSibling?.focus()">
+            <input type="text" maxlength="1" class="digit-input" placeholder="0">
+          </div>
+
+          <div class="result-preview">
+            <i class="fas fa-equals"></i> &nbsp; Example: <strong>0528</strong> = <strong>528 m³</strong>
+          </div>
+        </div>
+
+        <div class="modal-footer-new">
+          <button class="btn-new btn-cancel" onclick="closeReadingModal()">Cancel</button>
+          <button class="btn-new btn-update" onclick="saveReading()">Update Reading</button>
         </div>
       </div>
     </div>
@@ -255,14 +262,15 @@
         white-space: nowrap;
       }
 
-      /* Modal Styles */
+      /* Redesigned Modal Styles */
       .modal {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(4px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -274,81 +282,160 @@
         display: none;
         opacity: 0;
       }
-      .modal-content {
+      .modal-backdrop {
+        background: white;
         width: 90%;
-        max-width: 400px;
+        max-width: 440px;
         padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        border-radius: 24px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
       }
-      .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .modal-header-new {
+        text-align: center;
         margin-bottom: 1.5rem;
       }
-      .modal-header h2 {
+      .modal-header-new h2 {
         margin: 0;
-        font-size: 1.25rem;
-        color: #1e293b;
-      }
-      .close-btn {
-        background: none;
-        border: none;
         font-size: 1.5rem;
-        cursor: pointer;
-        color: #64748b;
+        color: #1e293b;
+        font-weight: 800;
       }
-      .reading-info {
+      .prev-reading-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         background: #f8fafc;
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        border: 1px solid #e2e8f0;
-      }
-      .form-group {
-        margin-bottom: 1rem;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-        color: #334155;
-      }
-      .form-group input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #cbd5e1;
-        border-radius: 6px;
-        font-size: 1rem;
-      }
-      .modal-hint {
-        font-size: 0.75rem;
+        padding: 8px 16px;
+        border-radius: 100px;
+        font-size: 0.9rem;
         color: #64748b;
+        border: 1px solid #e2e8f0;
+        margin-top: 10px;
+      }
+      .prev-reading-badge strong {
+        color: #3b82f6;
+      }
+      .meter-visual-box {
+        background: #1e293b;
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        color: white;
+        text-align: center;
+        position: relative;
+      }
+      .meter-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #94a3b8;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .meter-display {
+        font-family: 'Courier New', monospace;
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .digit-grey { color: #475569; }
+      .highlight-box {
+        background: #3b82f6;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 6px;
+        margin-left: 4px;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        border: 2px solid #60a5fa;
+      }
+      .arrow-indicator {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(45px);
+        font-size: 1.2rem;
+        color: #3b82f6;
+      }
+      .form-section {
+        text-align: center;
+      }
+      .input-label {
+        display: block;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 4px;
+        font-size: 1.1rem;
+      }
+      .helper-text {
+        color: #ef4444;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        display: block;
+      }
+      .meter-input-container {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
         margin-bottom: 1.5rem;
       }
-      .modal-footer {
-        display: flex;
-        gap: 1rem;
-        justify-content: flex-end;
+      .digit-input {
+        width: 50px;
+        height: 64px;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        color: #1e293b;
+        transition: all 0.2s;
+        background: #f8fafc;
       }
-      .btn-primary {
-        background-color: #3b82f6;
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 6px;
+      .digit-input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        transform: translateY(-2px);
+      }
+      .result-preview {
+        background: #f0f9ff;
+        border: 1px dashed #bae6fd;
+        padding: 12px;
+        border-radius: 12px;
+        color: #0369a1;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+      }
+      .modal-footer-new {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .btn-new {
+        padding: 14px;
+        border-radius: 12px;
         font-weight: 600;
+        font-size: 1rem;
         cursor: pointer;
+        transition: all 0.2s;
+        border: none;
       }
-      .btn-secondary {
-        background-color: white;
+      .btn-cancel {
+        background: #f8fafc;
         color: #64748b;
         border: 1px solid #e2e8f0;
-        padding: 0.75rem 1.5rem;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
+      }
+      .btn-update {
+        background: #3b82f6;
+        color: white;
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+      }
+      .btn-update:hover {
+        background: #2563eb;
+        transform: translateY(-1px);
       }
     </style>
 
