@@ -640,6 +640,33 @@ window.openReadingModal = (weekIndex) => {
     const currentStr = (weekData.current || "").toString().padStart(4, "0");
     inputs.forEach((input, i) => {
       input.value = weekData.current ? currentStr[i] : "";
+
+      // Add backspace listener if not already added
+      if (!input.dataset.listenerAdded) {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace") {
+            if (!input.value) {
+              // If empty, move to previous
+              const prev = input.previousElementSibling;
+              if (prev && prev.classList.contains("digit-input")) {
+                prev.focus();
+              }
+            } else {
+              // If not empty, clear it (default behavior)
+              // But if you want it to move immediately after clearing:
+              setTimeout(() => {
+                if (!input.value) {
+                  const prev = input.previousElementSibling;
+                  if (prev && prev.classList.contains("digit-input")) {
+                    prev.focus();
+                  }
+                }
+              }, 0);
+            }
+          }
+        });
+        input.dataset.listenerAdded = "true";
+      }
     });
 
     modal.classList.remove("hidden");
@@ -647,11 +674,10 @@ window.openReadingModal = (weekIndex) => {
     // Store index for saving
     modal.setAttribute("data-week-index", weekIndex);
 
-    // Focus first input
-    inputs[0].focus();
+    // Focus last input
+    inputs[inputs.length - 1].focus();
   }
 };
-
 window.closeReadingModal = () => {
   const modal = document.getElementById("update-reading-modal");
   if (modal) {
